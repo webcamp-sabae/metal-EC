@@ -1,7 +1,7 @@
 class CreateReceipts < ActiveRecord::Migration[5.2]
   def change
     create_table :receipts do |t|
-      t.references :user, foreign_key: true
+      t.references :user, foreign_key: true, null: false
       t.string :shipping_familyname,       null: false
       t.string :shipping_firstname,        null: false
       t.string :shipping_kana_familyname,  null: false
