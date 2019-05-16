@@ -12,7 +12,7 @@ class CreateCds < ActiveRecord::Migration[5.2]
       t.timestamps
     end
   end
-  add_foreign_key: :cds, :artists
-  add_foreign_key: :cds, :labels
-  add_foreign_key: :cds, :genres
+  add_foreign_key :cds, :artists
+  add_foreign_key :cds, :labels
+  add_foreign_key :cds, :genres
 end
