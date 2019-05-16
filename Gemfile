@@ -62,19 +62,3 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
-
-gem "refile", github: 'refile/refile', require: "refile/rails"
-gem "refile-mini_magick", github: 'refile/refile-mini_magick'
-
-gem 'kaminari', '~> 1.1.1'
-
-gem 'paranoia'
-
-group :development, :test do
-  gem 'rspec-rails',
-  gem 'factory_girl_rails',
-end
-
-gem 'bootstrap-sass'
-
-gem "jquery-rails"
