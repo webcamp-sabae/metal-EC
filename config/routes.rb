@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
 
   namespace :admins do
-  		root to: 'admin#index'
+  		root to: 'admins#index'
   		resources :purchases, only: [:index]
 		resources :receipts, only: [:update, :destroy]
 		resources :users, only: [:index,:show, :edit, :update]
