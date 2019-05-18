@@ -70,11 +70,6 @@ gem 'kaminari', '~> 1.1.1'
 
 gem 'paranoia'
 
-group :development, :test do
-  gem 'rspec-rails',
-  gem 'factory_girl_rails',
-end
-
 gem 'bootstrap-sass'
 
 gem "jquery-rails"
