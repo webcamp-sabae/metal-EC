@@ -1,0 +1,32 @@
+<h1>新しい住所を追加 </h1>
+
+
+<%= form_for(@othersaddress) do |f| %>
+   <p>氏名　性:</p>
+     <%= f.text_field :familyname %>
+   <p>氏名　名:</p>
+     <%= f.text_field :firstname %>
+   <p>カナ性:</p>
+     <%= f.text_field :kana_familyname %>
+   <p>カナ名:</p>
+     <%= f.text_field :kana_firstname %>
+   <p>電話番号:</p>
+     <%= f.text_field :telephone_number, :size=>"5" %> - <%= f.text_field :telephone_number, :size=>"5" %> - <%= f.text_field :telephone_number, :size=>"5" %>
+   <p>郵便番号:</p>
+     <%= f.text_field :postal_code, :size=>"5" %> - <%= f.text_field :postal_code, :size=>"5" %>
+   <p>都道府県:</p>
+     <%= f.text_field :address %>
+   <p>住所1(市区町村番地):</p>
+     <%= f.text_field :address %>
+   <p>住所2(ビル・マンション):</p>
+     <%= f.text_field :address %>
+    <%= f.submit '登録' %>
+<% end %>
+
+    <span>
+        <%= link_to '支払いへ戻る', new_receipt_path %>
+    </span>
+<% @othersaddresses.each do |address| %>
+
+<%= @othersaddress.address %>
+<% end %>
