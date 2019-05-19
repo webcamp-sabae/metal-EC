@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  root to: 'users#show'
   devise_for :admins
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
+  # root to: 'cds#index'
+   root to: 'users#show'
   get '/thanks', to: 'thanks#thanks'
 
   # devise_for :users
