@@ -62,15 +62,15 @@ class User < ApplicationRecord
   before_validation :set_telephone_number
 
   def telephone_number1
-  	@telephone_number1 if self.telephone_number.present?
+  	@telephone_number1 || self.telephone_number[0..2] if self.telephone_number.present?
   end
 
   def telephone_number2
-  	@telephone_number2 if self.telephone_number.present?
+  	@telephone_number2 || self.telephone_number[3..6] if self.telephone_number.present?
   end
 
   def telephone_number3
-  	@telephone_number3 if self.telephone_number.present?
+  	@telephone_number3 || self.telephone_number[7..10] if self.telephone_number.present?
   end
 
   #

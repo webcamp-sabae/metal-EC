@@ -8,27 +8,27 @@
 		<tbody>
 			<tr>
 				<th class="text-center">名前</th>
-				<td class="text-center">山田太郎</td>
+				<td class="text-center"><%= @user.familyname %> <%= @user.firstname %></td>
 			</tr>
 			<tr>
 				<th class="text-center">フリガナ</th>
-				<td class="text-center">ヤマダタロウ</td>
+				<td class="text-center"><%= @user.kana_familyname %> <%= @user.kana_firstname %></td>
 			</tr>
 			<tr>
 				<th class="text-center">郵便番号</th>
-				<td class="text-center">012 - 3456</td>
+				<td class="text-center"><%= @user.first_postal_code %> - <%= @user.last_postal_code %></td>
 			</tr>
 			<tr>
 				<th class="text-center">住所</th>
-				<td class="text-center">東京都渋谷区神南1丁目20-15  神南101ビル4F</td>
+				<td class="text-center"><%= @user.address %></td>
 			</tr>
 			<tr>
 				<th class="text-center">電話番号</th>
-				<td class="text-center">080 - 1234 - 5678</td>
+				<td class="text-center"><%= @user.telephone_number1 %> - <%= @user.telephone_number2 %> - <%= @user.telephone_number3 %></td>
 			</tr>
 			<tr>
 				<th class="text-center">メールアドレス</th>
-				<td class="text-center">sample@web.jp</td>
+				<td class="text-center"><%= @user.email %></td>
 			</tr>
 		</tbody>
 	</table>
