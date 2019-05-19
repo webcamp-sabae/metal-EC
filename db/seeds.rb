@@ -10,6 +10,3 @@ User.create(:familyname => "山田", :firstname => "太郎", :kana_familyname =>
 # Othersaddress.create(:user_id => "1", :familyname => "山田", :firstname => "太郎", :kana_familyname => "ヤマダ", :kana_firstname => "タロウ", :telephone_number => "090", :postal_code => "", :address => "東京都")
 
 Cart.create(:user_id => "1", :cd_id => "1", :amount => "2")
-
-
-
