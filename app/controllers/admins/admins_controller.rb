@@ -1,5 +1,5 @@
 class Admins::AdminsController < ApplicationController
-  layout 'admins'
+  layout "admins"
   def index
   end
 end
