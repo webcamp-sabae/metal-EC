@@ -1,0 +1,22 @@
+この辺りにパーシャルでアーティスト登録を入れます。
+
+<h1>CDページ</h1>
+
+<h2>CDを追加</h2>
+<%= form_for @cd,:url => {:action => :create} do |f| %>
+ <p>【必須】シングル/アルバム名</p>
+ <%= f.text_field :single_album_name %>
+ <p>【必須】アーティスト</p>
+ <%= f.collection_select :artist_id, Artist.all, :id, :artist_name %>
+ <p>【必須】レーベル名</p>
+ <%= f.collection_select :label_id, Label.all, :id, :label %>
+ <p>【必須】ジャンル</p>
+ <%= f.collection_select :genre_id, Genre.all, :id, :genre %>
+ <p>【必須】価格</p>
+ <%= f.text_field :price %>
+ <p>【必須】発売日</p>
+ <%= f.text_field :release %>
+ <p>【必須】在庫</p>
+ <%= f.text_field :stock %>
+<%= f.submit '登録' %>
+<% end %>
