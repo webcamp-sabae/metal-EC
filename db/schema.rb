@@ -124,15 +124,17 @@ ActiveRecord::Schema.define(version: 2019_05_16_052536) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "familyname", null: false
+    t.string "firstname", null: false
+    t.string "kana_familyname", null: false
+    t.string "kana_firstname", null: false
+    t.string "telephone_number", null: false
+    t.string "postal_code", null: false
+    t.string "address", null: false
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "familyname"
-    t.string "firstname"
-    t.string "kana_familyname"
-    t.string "kana_firstname"
-    t.string "postal_code"
-    t.string "telephone_number"
-    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
