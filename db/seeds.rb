@@ -1,5 +1,3 @@
-
-
 # 商品を作成
 Artist.create!(artist_name: 'SLIPKNOT')
 
