@@ -1,16 +1,38 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MetalEc</title>
+    <title>MetalEcサイト</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+<body>
+  <header class="navbar navbar-fixed-top navbar-inverse">
 
-  <body>
+    <div class="container">
+       <nav class="nav navbar-nav navbar-left">
+    <span style="color: #fff; font-size: 50px;">メタルECサイト</span>
+  </nav>
+  <nav>
+    <ul class="nav navbar-nav navbar-right">
+      <li> 
+        <span class="glyphicon glyphicon-home" aria-hidden="true">カート</span>
+      </li>
+       <li>
+        <span>マイページ</span>
+      </li>
+       <li>
+        <%= link_to destroy_user_session_path, method: :delete, class: "logout" do %>
+          <span> logout</span>
+        <% end %>
+      </li>
+    </ul>
+  </nav>
+  </div>
+</header>
     <%= yield %>
-  </body>
+<footer>
+</footer>
+</body>
 </html>
