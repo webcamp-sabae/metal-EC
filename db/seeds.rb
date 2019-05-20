@@ -31,9 +31,14 @@ User.create!(
   firstname: '太郎',
   kana_familyname: 'メタル',
   kana_firstname: 'タロウ',
-  telephone_number: '09000000000',
-  postal_code: '1500001',
-  address: '東京都渋谷区渋谷1-1-1',
+  telephone_number1: '090',
+  telephone_number2: '0000',
+  telephone_number3: '0000',
+  first_postal_code: "150",
+  last_postal_code: "0001",
+	statu_address: '東京都',
+	city_address: '渋谷区',
+	street_address: '渋谷1-1-1',
   password: 'password'
 )
 
