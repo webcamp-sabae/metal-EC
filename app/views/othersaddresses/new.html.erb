@@ -4,29 +4,44 @@
 
     <div class="row">
   <%= form_for (@othersaddress) do |f| %>
-     <p>氏名　性:</p>
-       <%= f.text_field :familyname %>
-     <p>氏名　名:</p>
-       <%= f.text_field :firstname %>
-     <p>カナ性:</p>
-       <%= f.text_field :kana_familyname %>
-     <p>カナ名:</p>
-       <%= f.text_field :kana_firstname %>
-     <p>電話番号:</p>
-       <%= f.telephone_field :telephone_number, :size=>"5" %> - <%= f.telephone_field :telephone_number, :size=>"5" %> - <%= f.telephone_field :telephone_number, :size=>"5" %>
-       ※半角数字でお願いいたします
-     <p>郵便番号:</p>
-       <%= f.text_field :postal_code, :size=>"5" %> - <%= f.text_field :postal_code, :size=>"5" %>
-        ※半角数字でお願いいたします
-     <p>都道府県:</p>
-       <%= f.select :address, ["北海道","青森県","岩手県","宮城県","秋田県","山形県","福島県","茨城県","栃木県","群馬県","埼玉県","千葉県","東京都","神奈川県","新潟県","富山県","石川県","福井県","山梨県","長野県","岐阜県","静岡県","愛知県","三重県","滋賀県","京都府","大阪府","兵庫県","奈良県","和歌山県","鳥取県","島根県","岡山県","広島県","山口県","徳島県","香川県","愛媛県","高知県","福岡県","佐賀県","長崎県","熊本県","大分県","宮崎県","鹿児島県","沖縄県"], :prompt => "選択してください", :size => "15" %>
-     <p>住所1(市区町村番地):</p>
-       <%= f.text_field :address %>
-     <p>住所2(ビル・マンション):</p>
-       <%= f.text_field :address %>
-      <%= f.submit '登録' %>
-  <% end %>
+     <div class="field">
+    <%= f.label :性 %><br />
+    <%= f.text_field :familyname, autofocus: true, autocomplete: "familyname" %>
+  </div>
+  <div class="field">
+    <%= f.label :名 %><br />
+    <%= f.text_field :firstname, autofocus: true, autocomplete: "firstname" %>
+  </div>
+  <div class="field">
+    <%= f.label :カナ性 %><br />
+    <%= f.text_field :kana_familyname, autofocus: true, autocomplete: "kana_familyname" %>
+  </div>
+  <div class="field">
+    <%= f.label :カナ名 %><br />
+    <%= f.text_field :kana_firstname, autofocus: true, autocomplete: "kana_firstname" %>
+  </div>
+     <div class="field">
+    <%= f.label :電話番号 %><br />
+    <%= f.text_field :telephone_number1, :size=>"5" %> - <%= f.text_field :telephone_number2, :size=>"5" %> - <%= f.text_field :telephone_number3, :size=>"5" %>※半角数字でお願いいたします
+  </div>
 
+     <div class="field">
+    <%= f.label :郵便番号 %><br />
+    <%= f.text_field :first_postal_code, :size=>"5" %>
+    <span>−</span>
+    <%= f.text_field :last_postal_code, :size=>"5" %> ※半角数字でお願いいたします
+  </div>
+        <div class="field">
+          <%= f.label :都道府県 %><br />
+       <%= f.select :statu_address, ["北海道","青森県","岩手県","宮城県","秋田県","山形県","福島県","茨城県","栃木県","群馬県","埼玉県","千葉県","東京都","神奈川県","新潟県","富山県","石川県","福井県","山梨県","長野県","岐阜県","静岡県","愛知県","三重県","滋賀県","京都府","大阪府","兵庫県","奈良県","和歌山県","鳥取県","島根県","岡山県","広島県","山口県","徳島県","香川県","愛媛県","高知県","福岡県","佐賀県","長崎県","熊本県","大分県","宮崎県","鹿児島県","沖縄県"], :prompt => "選択してください", :size => "15" %><br />
+      <%= f.label :住所（市区町村番地） %><br />
+      <%= f.text_field :city_address %><br />
+      <%= f.label :住所（ビル・マンション） %><br />
+      <%= f.text_field :street_address %>
+    </div>
+      <%= f.submit '登録' %>
+
+        <% end %>
       <span>
           <%= link_to '支払い画面へ戻る', new_receipt_path %>
       </span>
