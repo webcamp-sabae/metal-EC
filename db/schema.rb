@@ -31,6 +31,16 @@ ActiveRecord::Schema.define(version: 2019_05_16_052536) do
     t.index ["artist_name"], name: "index_artists_on_artist_name"
   end
 
+  create_table "carts", force: :cascade do |t|
+    t.integer "cd_id", null: false
+    t.integer "user_id", null: false
+    t.integer "amount", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cd_id"], name: "index_carts_on_cd_id"
+    t.index ["user_id"], name: "index_carts_on_user_id"
+  end
+
   create_table "cds", force: :cascade do |t|
     t.integer "artist_id", null: false
     t.integer "label_id", null: false
@@ -56,6 +66,20 @@ ActiveRecord::Schema.define(version: 2019_05_16_052536) do
     t.string "label", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "othersaddresses", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "familyname", null: false
+    t.string "firstname", null: false
+    t.string "kana_familyname", null: false
+    t.string "kana_firstname", null: false
+    t.string "telephone_number", null: false
+    t.string "postal_code", null: false
+    t.string "address", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_othersaddresses_on_user_id"
   end
 
   create_table "purchases", force: :cascade do |t|
@@ -100,15 +124,17 @@ ActiveRecord::Schema.define(version: 2019_05_16_052536) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "familyname", null: false
+    t.string "firstname", null: false
+    t.string "kana_familyname", null: false
+    t.string "kana_firstname", null: false
+    t.string "telephone_number", null: false
+    t.string "postal_code", null: false
+    t.string "address", null: false
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "familyname"
-    t.string "firstname"
-    t.string "kana_familyname"
-    t.string "kana_firstname"
-    t.string "postal_code"
-    t.string "telephone_number"
-    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

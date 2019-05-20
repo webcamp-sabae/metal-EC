@@ -11,13 +11,14 @@ Rails.application.routes.draw do
   resources :cds, only: [:index, :show]
   resources :users, only: [:show, :edit, :update, :destroy]
   resources :carts, only: [:index, :create, :update, :destroy]
-  resources :recipts, only: [:new, :create]
+  resources :receipts, only: [:new, :create]
   resources :othersaddresses, only: [:new, :create, :update]
   resources :purchases, only: [:index]
 
 
-  namespace :admin do
-  		root to: 'admin#index'
+
+  namespace :admins do
+  		root to: 'admins#index'
   		resources :purchases, only: [:index]
 		resources :receipts, only: [:update, :destroy]
 		resources :users, only: [:index,:show, :edit, :update]
