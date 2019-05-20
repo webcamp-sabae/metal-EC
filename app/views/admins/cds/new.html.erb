@@ -2,12 +2,16 @@
 	<div class="card">
 	  <%= render 'admins/artists/new' %>
 	</div>
-<p></p>
-	<div class="card">
-		<div class="card-body">
-			<h1 class="card-title">CDページ</h1>
-			<h2 class="card-subtitle mb-2 text-muted">CDを追加</h2>
+	<p></p>
+
+	<div class="row">
+		<h1 class="col-sm-12">CDを登録</h1>
+		<div class="col-sm-4">
 			<%= form_for ([:admins, @cd]) do |f| %>
+			<%= f.attachment_field :cd_image %>
+		</div>
+		<div class="col-sm-8">
+			<h2>CD</h2>
 			 <p>【必須】シングル/アルバム名</p>
 			 <%= f.text_field :single_album_name %>
 			 <p>【必須】アーティスト</p>
@@ -26,6 +30,4 @@
 			<% end %>
 		</div>
 	</div>
-
-
 </div>

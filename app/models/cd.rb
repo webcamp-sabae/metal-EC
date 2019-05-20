@@ -4,4 +4,6 @@ class Cd < ApplicationRecord
 	belongs_to :genre
 	belongs_to :label
 	has_many :songs
+
+	attachment :cd_image
 end
