@@ -42,6 +42,7 @@ group :development, :test do
   gem 'rspec-rails'
 
   gem 'factory_bot_rails'
+  gem 'rails-erd'
 end
 
 group :development do
@@ -74,8 +75,6 @@ gem 'kaminari', '~> 1.1.1'
 
 gem 'paranoia'
 
-
 gem 'bootstrap', '~> 4.3.1'
-
 
 gem "jquery-rails"
