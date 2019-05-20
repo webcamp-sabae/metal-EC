@@ -1,6 +1,12 @@
 class Othersaddress < ApplicationRecord
 
- belongs_to :user
+  belongs_to :user
+
+  validates :familyname, presence: true
+  validates :firstname, presence: true
+  validates :kana_familyname, presence: true
+  validates :kana_firstname, presence: true
+
 
  # 郵便番号の仮想カラム
    attr_accessor :first_postal_code, :last_postal_code
