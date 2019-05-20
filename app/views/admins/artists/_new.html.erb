@@ -1,13 +1,13 @@
-<div class="card-body">
-	<h2 class="card-title">アーティストを登録</h2>
-	<%= form_for ([:admins, @artist]) do |f| %>
-	 <p>【必須】アーティスト名</p>
-	 <%= f.text_field :artist_name %>
-	<%= f.submit '登録' %>
-	<% end %>
-
-	<% @artists.each do |artist| %>
-	<%= artist.artist_name %>
-	<% end %>
+<%= form_for ([:admins, @artist]) do |f| %>
+<div class="row">
+	<div class="col-3">
+	 <%= f.label :artist_name, "【必須】アーティスト名" %>
+	</div>
+	<div class="col-8">
+	 <%= f.text_field :artist_name, class: "form-control" %>
+	</div>
+	<div class="col-1">
+	<%= f.submit '登録', class:"btn btn-primary" %>
 </div>
-
+</div>
+<% end %>
