@@ -1,7 +1,8 @@
-class Admin::CdsController < ApplicationController
+class Admins::CdsController < Admins::AdminsController
 
 	def new
 		@artist = Artist.new
+		@artists = Artist.all
 		@cd = Cd.new
 	end
 
