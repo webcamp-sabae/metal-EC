@@ -78,3 +78,7 @@ gem 'paranoia'
 gem 'bootstrap', '~> 4.3.1'
 
 gem "jquery-rails"
+
+gem 'better_errors'
+
+gem 'binding_of_caller'
