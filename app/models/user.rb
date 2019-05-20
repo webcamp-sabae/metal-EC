@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :carts
+  has_many :othersaddresses
+  has_many :receipts
    # 郵便番号の仮想カラム
    attr_accessor :first_postal_code, :last_postal_code
 
