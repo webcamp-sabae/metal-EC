@@ -10,7 +10,7 @@ class Admins::CdsController < Admins::AdminsController
 		@cd = Cd.new(cd_params)
 		@cd.save
 		logger.debug @cd.errors.to_yaml
-		redirect_to new_admin_cd_path
+		redirect_to new_admins_cd_path
 	end
 
 
