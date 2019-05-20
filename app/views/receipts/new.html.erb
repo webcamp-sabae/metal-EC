@@ -2,23 +2,15 @@
 
 <h1>注文内容の確認・変更</h1>
 
-<p>配送先住所</p>
+<h4>配送先住所</h4>
 
 <%= form_for(@receipt) do |f| %>
 
-<label>
-  <input type="radio" name="button1" value="1" />登録先住所へ配送する</label>
-<label>
-  <input type="radio" name="button2" value="2" />新たに配送先を設定する</label>
+<%= f.collection_select :user_id, User.all, :id, :address %>
 
 <ul>
-
+   <%= link_to "お届け先の追加", new_othersaddress_path, class: "btn btn-primary" %>
 </ul>
-
-
-
-
-
 <p>支払方法</p>
 
 <label>
@@ -31,11 +23,14 @@
 
 <p>配送方法: まとめて配送する</p>
 
-
-
-
 <%= f.submit "購入する" %>
 
 <% end %>
+#住所選択をさせる
+<% @othersaddress.each do |address| %>
+
+<%= address.address %>
+<% end %>
+
 
 </div>

@@ -10,9 +10,11 @@ class OthersaddressesController < ApplicationController
     @othersaddress = Othersaddress.new(othersaddress_params)
     @othersaddress.user_id = 1
     if @othersaddress.save
-    redirecit_to new_receipt_path
+      flash[:notice] = "住所を登録しました"
+      redirect_to new_receipt_path
     else
-    render :new
+      flash[:notice] = "住所が登録できていません.もう一度入力してください"
+      render :new
     end
   end
 
