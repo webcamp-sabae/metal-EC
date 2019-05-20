@@ -24,7 +24,7 @@ Song.create!(cd_id: 1, disc_num: 1, song_title: '13')
 Song.create!(cd_id: 1, disc_num: 1, song_title: '14')
 
 
-# 会員登録して商品を購入
+# 新規会員登録して商品を購入
 User.create!(
   email: "metal-taro@example.com",
   familyname: '目立留',
@@ -37,23 +37,11 @@ User.create!(
   password: 'password'
 )
 
-Othersaddress.create!(
-  user_id: 1,
-  familyname: '目立留',
-  firstname: 'の母',
-  kana_familyname: 'メタル',
-  kana_firstname: 'ノハハ',
-  telephone_number: '09012345678',
-  postal_code: '5300001',
-  address: '大阪府大阪市北区梅田1-1-1'
-)
-
 Cart.create!(
   cd_id: 1,
   user_id: 1,
   amount: 1
 )
-
 
 user = User.first
 
@@ -69,6 +57,26 @@ Receipt.create!(
   payment: 1,
   status: 1,
   postage: 500
+)
+
+Purchase.create!(
+  cd_id: 1,
+  receipt_id: 1,
+  purches_price: 1916
+)
+
+
+# 別の届け先を登録して商品を購入
+
+Othersaddress.create!(
+  user_id: 1,
+  familyname: '目立留',
+  firstname: 'の母',
+  kana_familyname: 'メタル',
+  kana_firstname: 'ノハハ',
+  telephone_number: '09012345678',
+  postal_code: '5300001',
+  address: '大阪府大阪市北区梅田1-1-1'
 )
 
 anothers = user.othersaddresses
@@ -90,6 +98,6 @@ Receipt.create!(
 
 Purchase.create!(
   cd_id: 1,
-  receipt_id: 1,
+  receipt_id: 2,
   purches_price: 1916
 )
