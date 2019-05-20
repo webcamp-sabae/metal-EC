@@ -1,23 +1,22 @@
+<div class="container">
+
 <h1>注文内容の確認・変更</h1>
 
 <p>配送先住所</p>
+
 <%= form_for(@receipt) do |f| %>
+
 <label>
   <input type="radio" name="button1" value="1" />登録先住所へ配送する</label>
 <label>
   <input type="radio" name="button2" value="2" />新たに配送先を設定する</label>
 
+<ul>
 
-<% f.text_field :shipping_familyname, "#{@user.familyname}" %>
-<% f.text_field :shipping_firstname, "#{@user.firstname}" %>
-<% f.text_field :shipping_kana_familyname, "#{@user.kana_familyname}" %>
-<% f.text_field :shipping_kana_firstname, "#{@user.kana_firstname}" %>
-<% f.text_field :shipping_postal, "#{@user.postal_code}" %>
-<% f.text_field :shipping_address, "#{@user.address}" %>
-<% f.text_field :shipping_telephone_number, "#{@user.telephone_number}" %>
+</ul>
 
 
-<% end %>
+
 
 
 <p>支払方法</p>
@@ -30,5 +29,13 @@
   <%= f.radio_button :payment, "3" %>代金引換え</label>
 
 
-<p>配送方法</p>
+<p>配送方法: まとめて配送する</p>
 
+
+
+
+<%= f.submit "購入する" %>
+
+<% end %>
+
+</div>

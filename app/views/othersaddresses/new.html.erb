@@ -1,9 +1,9 @@
 <div class="container">
-  <div class="row">
+
    <h1>新しいお届け先の追加</h1>
 
-
-  <%= form_for(@othersaddress) do |f| %>
+    <div class="row">
+  <%= form_for (@othersaddress) do |f| %>
      <p>氏名　性:</p>
        <%= f.text_field :familyname %>
      <p>氏名　名:</p>
@@ -28,7 +28,7 @@
   <% end %>
 
       <span>
-          <%= link_to '支払いへ戻る', new_receipt_path %>
+          <%= link_to '支払い画面へ戻る', new_receipt_path %>
       </span>
   </div>
 </div>

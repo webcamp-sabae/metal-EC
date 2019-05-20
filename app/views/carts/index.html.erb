@@ -1,24 +1,35 @@
-<h2>ショッピングカート</h2>
-  <table class="table">
-  <thead>
-    <tr>
-      <th>商品画像</th>
-      <th>商品名</th>
-      <th>アーティスト名</th>
-      <th>価格(円)</th>
-      <th>数量</th>
-      <th> </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th></th>
-      <td><%= user_cd.cd_id.single_album_name %></td>
-      <td><%= user_cd.cd_id.artist_id.artist_name %></td>
-      <td><%= user_cd.cd_id.price %></td>
-      <td><%= user_cd.cd_id.single_album_name %></td>
-    </tr>
-  </tbody>
-</table>
+<div class="container">
+  <div class ="row">
+    <div class="col-8">
+    <h2>ショッピングカート</h2>
+      <table class="table">
+      <thead>
+        <tr>
+          <th>商品画像</th>
+          <th>商品名</th>
+          <th>アーティスト名</th>
+          <th>価格(円)</th>
+          <th>数量</th>
+          <th> </th>
+        </tr>
+      </thead>
 
-<%= link_to "お支払いへ進む", new_receipt_path, class: "btn btn-primary" %>
+
+      <tbody>
+        <tr>
+          <th></th>
+          <td>レモン</td>
+          <td>米津玄氏</td>
+          <td>１０００円</td>
+          <td>1個</td>
+          <td><%= link_to "削除", class: "btn btn-danger btn-sm", method: :delete %></td>
+        </tr>
+      </tbody>
+    </table>
+    <%= link_to "お支払いへ進む", new_receipt_path, class: "btn btn-primary" %>
+    </div>
+    <div class ="col-4">
+
+  </div>
+ </div>
+</div>

@@ -7,9 +7,12 @@ class OthersaddressesController < ApplicationController
   end
 
   def create
-    othersaddress = Othersaddress.new(othersaddress_params)
-    othersaddress.save
+    @othersaddress = Othersaddress.new(othersaddress_params)
+    if @othersaddress.save
     redirecit_to new_receipt_path
+    else
+    render :new
+    end
   end
 
   def update
@@ -20,6 +23,6 @@ class OthersaddressesController < ApplicationController
   private
 
   def othersaddress_params
-    params.require(:othersaddress).permit(:familyname, :firstname, :kana_familyname, :kana_firstname, :telephone_number, :postal_code, :first_address, :last_address, :address)
+    params.require(:othersaddress).permit(:user_id,:familyname, :firstname, :kana_familyname, :kana_firstname, :telephone_number, :postal_code, :address)
   end
 end
