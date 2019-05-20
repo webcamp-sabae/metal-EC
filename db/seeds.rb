@@ -24,7 +24,7 @@ Song.create!(cd_id: 1, disc_num: 1, song_title: '13')
 Song.create!(cd_id: 1, disc_num: 1, song_title: '14')
 
 
-# 新規会員登録して商品を購入
+# 新規会員登録して複数商品を購入
 User.create!(
   email: "metal-taro@example.com",
   familyname: '目立留',
@@ -71,6 +71,37 @@ Purchase.create!(
   amount: 1
 )
 
+#
+Purchase.create!(
+  cd_id: 1,
+  receipt_id: 1,
+  purches_price: 1916,
+  amount: 1
+)
+
+
+# 発送済：　商品購入
+Receipt.create!(
+  user_id: user.id,
+  shipping_familyname: user.familyname,
+  shipping_firstname: user.firstname,
+  shipping_kana_familyname: user.kana_familyname,
+  shipping_kana_firstname: user.kana_firstname,
+  shipping_postal: user.postal_code,
+  shipping_address: user.address,
+  shipping_telephone_number: user.telephone_number,
+  payment: 1,
+  status: 2,
+  postage: 500
+)
+
+Purchase.create!(
+  cd_id: 1,
+  receipt_id: 2,
+  purches_price: 1916,
+  amount: 1
+)
+
 
 # 別の届け先を登録して商品を購入
 
@@ -104,7 +135,7 @@ Receipt.create!(
 
 Purchase.create!(
   cd_id: 1,
-  receipt_id: 2,
+  receipt_id: 3,
   purches_price: 1916,
   amount:1
 )
