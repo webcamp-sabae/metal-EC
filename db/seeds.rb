@@ -67,7 +67,8 @@ Receipt.create!(
 Purchase.create!(
   cd_id: 1,
   receipt_id: 1,
-  purches_price: 1916
+  purches_price: 1916,
+  amount: 1
 )
 
 
@@ -104,5 +105,6 @@ Receipt.create!(
 Purchase.create!(
   cd_id: 1,
   receipt_id: 2,
-  purches_price: 1916
+  purches_price: 1916,
+  amount:1
 )
