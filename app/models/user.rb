@@ -10,7 +10,7 @@ class User < ApplicationRecord
    # 郵便番号の仮想カラム
    attr_accessor :first_postal_code, :last_postal_code
 
-   validates :postal_code, format: { with: /\A\d{7}\z/ }
+  validates :postal_code, format: { with: /\A\d{7}\z/ }
   validates :first_postal_code, :last_postal_code, presence: true
 
   #先にset_postal_codeを呼ばないとバリデーションエラーになる
