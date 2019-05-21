@@ -4,6 +4,7 @@
 class Admins::UsersController < Admins::AdminsController
 
   def index
+    @users = User.all
   end
 
   def show

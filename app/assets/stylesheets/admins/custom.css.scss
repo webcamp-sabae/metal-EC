@@ -111,12 +111,35 @@ body {
   box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
 }
 
-
-
 .art-mgn{
   margin-top: 40px;
 }
 
 .form-mgn{
   margin-bottom: 40px;
+}
+
+td,th {
+  white-space: nowrap;
+}
+
+.receipt-shipping-address {
+  width: 1px;
+  color: red;
+}
+
+.receipt-shipping-familyname {
+  width: 1px;
+}
+
+.receipt-user-id {
+  width: 1px;
+}
+
+.receipt-payment {
+  width: 1px;
+}
+
+.receipt-created-at{
+  width: 1px;
 }
