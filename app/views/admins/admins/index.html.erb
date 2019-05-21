@@ -9,20 +9,22 @@
       <table class="table table-striped table-sm user-table">
         <thead>
           <tr>
-            <th>注文日</th>
-            <th>支払方法</th>
-            <th>会員番号</th>
-            <th>会員名</th>
-            <th>住所</th>
+            <th class="receipt-created-at">注文日</th>
+            <th class="receipt-payment">支払方法</th>
+            <th class="receipt-user-id">会員番号</th>
+            <th class="receipt-shipping-familyname">会員名</th>
+            <th class="receipt-shipping-address">住所</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><%= receipt.created_at %></td>
-            <td><%= receipt.payment %></td>
-            <td><%= receipt.user_id %></td>
-            <td><%= receipt.shipping_familyname %></td>
-            <td><%= receipt.shipping_address %></td>
+            <td class="receipt-created-at">
+              <%= receipt.created_at %>
+            </td>
+            <td class="receipt-payment"><%= receipt.payment %></td>
+            <td class="receipt-user-id"><%= receipt.user_id %></td>
+            <td class="receipt-shipping-familyname"><%= receipt.shipping_familyname %></td>
+            <td class="receipt-shipping-address"><%= receipt.shipping_address %></td>
           </tr>
         </tbody>
       </table>

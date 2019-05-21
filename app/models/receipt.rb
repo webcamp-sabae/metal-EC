@@ -5,13 +5,12 @@ class Receipt < ApplicationRecord
   enum status: { 未発送: 1, 発送済: 2 }
 
 
-# クラスメソッド 未発送の情報のみ取得
-  def self.undispatched
+# クラスメソッド status情報のみ取得
+  def self.status_select(status)
     list = self.select do |receipt|
-      receipt.status == '未発送'
+      receipt.status == status
     end
     return list
   end
-
 
 end
