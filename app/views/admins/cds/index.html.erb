@@ -19,14 +19,13 @@
         <tr>
           <% @cds.each do |cd| %>
           <td> <%= attachment_image_tag cd, :cd_image, :fill, 60, 60,
-          fallback: "no_image.jpg", size: "60x60"%>
-</td>
+          fallback: "no_image.jpg", size: "60x60"%></td>
           <td><%= cd.id %></td>
           <td><%= cd.genre.genre %></td>
           <td><%= cd.artist.artist_name %></td>
           <td><%= cd.single_album_name %></td>
           <td><%= cd.stock %></td>
-          <td><button type="button" class="btn btn-outline-success btn-sm">　詳細　</button></td>
+          <td><%= link_to "詳細", admins_cd_path(cd.id), :class => "btn btn-outline-success btn-sm" %></td>
         </tr>
         <% end %>
       </tbody>

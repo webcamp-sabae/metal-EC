@@ -8,14 +8,21 @@ class Admins::CdsController < Admins::AdminsController
 
 	def index
 		@cds = Cd.all
-
 	end
+
+	def show
+		@cd = Cd.find(params[:id])
+	end
+
 
 	def create
 		@cd = Cd.new(cd_params)
 		@cd.save
 		logger.debug @cd.errors.to_yaml
 		redirect_to new_admins_cd_path
+	end
+
+	def update
 	end
 
 
