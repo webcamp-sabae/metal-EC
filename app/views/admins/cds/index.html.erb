@@ -17,23 +17,16 @@
       </thead>
       <tbody>
         <tr>
+          <% @cds.each do |cd| %>
           <td>   </td>
-          <td>234</td>
-          <td>メタル</td>
-          <td>メタリカ</td>
-          <td>メタリカ・ベスト</td>
-          <td>1枚</td>
+          <td><%= cd.id %></td>
+          <td><%= cd.genre.genre %></td>
+          <td><%= cd.artist.artist_name %></td>
+          <td><%= cd.single_album_name %></td>
+          <td><%= cd.stock %></td>
           <td><button type="button" class="btn btn-outline-success btn-sm">　詳細　</button></td>
         </tr>
-        <tr>
-          <td>   </td>
-          <td>235</td>
-          <td>メタル</td>
-          <td>スリップノット</td>
-          <td>スリップノット・ベスト</td>
-          <td>1枚</td>
-          <td><button type="button" class="btn btn-outline-success btn-sm">　詳細　</button></td>
-        </tr>
+        <% end %>
       </tbody>
     </table>
   </div>

@@ -6,6 +6,11 @@ class Admins::CdsController < Admins::AdminsController
 		@cd = Cd.new
 	end
 
+	def index
+		@cds = Cd.all
+
+	end
+
 	def create
 		@cd = Cd.new(cd_params)
 		@cd.save
