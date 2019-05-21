@@ -18,12 +18,3 @@ class Admins::UsersController < Admins::AdminsController
     end
 
 end
-
-
-# <%= form.text_field :email %>
-# <%= form.submit %>
-#
-# <%= form_with(...) do |form| %>
-#   <%= form.label(:genre) %>
-#   <%= form.text_field(:genre, id: :title_genre) %>
-# <% end %>
