@@ -8,9 +8,9 @@
 <% end %>
 
 <div class="container">
-	<div class="card art-mgn">
+	<div class="card art-mgn border-dark">
+		<h1 class="card-header">アーティストを登録</h1>
 		<div class="card-body">
-			<h2 class="card-title">アーティストを登録</h2>
 			<div class="form-group">
 	  	  <%= render 'admins/artists/new' %>
 	    </div>
@@ -19,14 +19,16 @@
 
 	<p></p>
 
-	<div class="card form-mgn">
+	<div class="card form-mgn border-dark">
+		<h1 class="card-header">CDを登録</h1>
 		<div class="card-body">
 			<div class="row">
-			<h1 class="col-sm-12">CDを登録</h1>
 				<div class="col-sm-4">
+					<div class="card card-body">
 					<h3>ジャケット画像を登録</h3>
 					<%= form_for ([:admins, @cd]) do |f| %>
 					<%= f.attachment_field :cd_image %>
+				</div>
 				</div>
 				<div class="col-sm-8 form-mgn">
 					<h2>CD</h2>
