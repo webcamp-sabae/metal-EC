@@ -2,12 +2,25 @@ class CartsController < ApplicationController
 
   def index
     @carts = Cart.all
+    @cds = Cd.all
   end
 
   def create
-   cd = Cd.find(params[:id])
-   @cart = Cart.new
+   @cart = Cart.new(cart_params)
    @cart.save
+   redirect_to carts_path
+  end
+
+  def update
+      @cart = Cart.find(params[:id])
+    if params[:cart][:amount].to_i <= @cart.cd.stock
+      @cart.update(cart_params)
+      flash[:notice] = "更新しました。"
+      redirect_to carts_path
+    else
+      flash[:notice] = "購入希望数の在庫がないため更新に失敗しました"
+      redirect_to carts_path
+    end
   end
 
   def delete
@@ -17,17 +30,12 @@ class CartsController < ApplicationController
     redirect_to carts_path
     else
     falsh[:notice] = "更新に失敗しました"
-    redirect_to carts_path
+    redirect_to cart_path
     end
   end
 
-  def update
-
-  end
-
-
-
   private
+
   def cart_params
     params.require(:cart).permit(:cd_id, :user_id, :amount)
   end

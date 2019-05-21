@@ -1,7 +1,7 @@
 <div class="container">
   <div class ="row">
     <div class="col-8">
-    <h2>ショッピングカート</h2>
+    <h2  class="margin_top">ショッピングカート</h2>
       <table class="table">
       <thead>
         <tr>
@@ -13,20 +13,22 @@
           <th> </th>
         </tr>
       </thead>
-
-
       <tbody>
+
         <tr>
+          <% @cds.each do |cd| %>
           <th></th>
-          <td>レモン</td>
-          <td>米津玄氏</td>
-          <td>１０００円</td>
-          <td>1個</td>
+          <td><%= cd.single_album_name %></td>
+          <td><%= cd.artist_id %></td>
+          <td><%= cd.price %>円</td>
+          <td><%= cd.stock %>個</td>
           <td><%= link_to "削除", class: "btn btn-danger btn-sm", method: :delete %></td>
+          <% end %>
         </tr>
       </tbody>
     </table>
-    <%= link_to "お支払いへ進む", new_receipt_path, class: "btn btn-primary" %>
+      <%= link_to "カートを空にする", @cart, method: :delete, class: "btn btn-warning", confirm: "本当に大丈夫ですか" %>
+      <%= link_to "お支払いへ進む", new_receipt_path, class: "btn btn-primary" %>
     </div>
     <div class ="col-4">
 
