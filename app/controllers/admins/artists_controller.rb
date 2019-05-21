@@ -5,8 +5,12 @@ class Admins::ArtistsController < Admins::AdminsController
 
 	def create
 		@artist = Artist.new(artist_params)
-		@artist.save
+		if @artist.save
 		redirect_to new_admins_cd_path
+		else
+		@cd = Cd.new
+     	 render "admins/cds/new"
+   		end
 	end
 
 	def index
