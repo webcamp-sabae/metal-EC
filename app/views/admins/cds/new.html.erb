@@ -19,18 +19,18 @@
 
 	<p></p>
 
-	<div class="card form-mgn border-dark">
+	<div class="card border-dark">
 		<h1 class="card-header">CDを登録</h1>
 		<div class="card-body">
 			<div class="row">
-				<div class="col-sm-4">
+				<div class="col-sm-6">
 					<div class="card card-body">
 						<h3>ジャケット画像を登録</h3>
 						<%= form_for ([:admins, @cd]) do |f| %>
 						<%= f.attachment_field :cd_image %>
 					</div>
 				</div>
-				<div class="col-sm-8 form-mgn">
+				<div class="col-sm-6">
 					<h2>CD</h2>
 					<div class="form-group">
 					 <%= f.label :single_album_name, "【必須】シングル/アルバム名" %>
@@ -45,7 +45,11 @@
 					<div class="col-xs-10">
 					 <%= f.collection_select :label_id, Label.all, :id, :label, {}, {class: "form-control"} %>
 					</div>
-					</div>
+				</div>
+			</div>
+		</div>
+			<div class="row">
+				<div class="col-sm-6">
 					<div class="form-group">
 					 <%= f.label :genre_id, "【必須】ジャンル" %>
 					 <%= f.collection_select :genre_id, Genre.all, :id, :genre, {}, {class: "form-control"} %>
@@ -54,6 +58,8 @@
 					 <%= f.label :price, "【必須】価格" %>
 					 <%= f.text_field :price, class: "form-control" %>
 					</div>
+				</div>
+				<div class="col-sm-6">
 					<div class="form-group">
 					 <%= f.label :release, "【必須】発売日" %>
 					 <%= f.text_field :release, class: "form-control" %>
@@ -62,10 +68,34 @@
 					 <%= f.label :stock, "【必須】在庫" %>
 					 <%= f.text_field :stock, class: "form-control" %>
 					</div>
-					<%= f.submit '登録' %>
-					<% end %>
 				</div>
 			</div>
 		</div>
+
+		<h1 class="card-header">曲名を登録</h1>
+		<div class="card-body">
+			<div class="form-group">
+				<% 3.times do |times| %>
+				<%= f.fields_for :songs do |s| %>
+				<div class="row">
+					<div class="col-2">
+					 <%= s.label :disc_num, "ディスクNo." %>
+					 <%= s.text_field :disc_num, class: "form-control" %>
+					</div>
+					<div class="col-10">
+					 <%= s.label :song_title, "曲名" %>
+					 <%= s.text_field :song_title, class: "form-control" %>
+					</div>
+				</div>
+				<% end %>
+				<% end %>
+				<%= f.submit '登録' %>
+
+				<% end %>
+			</div>
+		</div>
+	    </div>
+		</div>
 	</div>
+
 </div>
