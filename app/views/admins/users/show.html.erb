@@ -1,7 +1,13 @@
 <div class="col-md-10 offset-md-1 mt-5">
   <h4 class="mb-3">会員詳細
-    <div class="float-right ml-4"><button type="button" class="btn btn-outline-danger">　削除　</button></div>
-    <div class="float-right"><button type="button" class="btn btn-outline-success">　編集　</button></div>
+    <div class="float-right ml-4">
+      <%= link_to '削除', admins_user_path(@user), method: :delete,
+          class: "btn btn-outline-danger" %>
+    </div>
+    <div class="float-right">
+      <%= link_to '編集', edit_admins_user_path(@user),
+          class: "btn btn-outline-success" %>
+    </div>
   </h4>
 
 
