@@ -16,34 +16,16 @@
         </tr>
       </thead>
       <tbody>
-
-        <tr>
-          <td>1201</td>
-          <td>メタル太郎</td>
-          <td>080-0000-0000</td>
-          <td>metal@example.com</td>
-          <td>東京都渋谷区渋谷1-1-1</td>
-          <td><button type="button" class="btn btn-outline-secondary">詳細</button></td>
-        </tr>
-
-        <tr>
-          <td>1202</td>
-          <td>メタル次郎</td>
-          <td>080-1234-5678</td>
-          <td>metal-jiro@example.com</td>
-          <td>大阪府大阪市北区梅田1-1-1</td>
-          <td><button type="button" class="btn btn-outline-secondary">詳細</button></td>
-        </tr>
-
-        <tr>
-          <td>1203</td>
-          <td>メタル花子</td>
-          <td>080-9999-9999</td>
-          <td>metal-hanako@example.com</td>
-          <td>東京都渋谷区渋谷1-1-1</td>
-          <td><button type="button" class="btn btn-outline-secondary">詳細</button></td>
-        </tr>
-
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.id %></td>
+            <td><%= user.familyname %></td>
+            <td><%= user.telephone_number %></td>
+            <td><%= user.email %></td>
+            <td><%= user.address %></td>
+            <td><button type="button" class="btn btn-outline-secondary">詳細</button></td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
   </div>
