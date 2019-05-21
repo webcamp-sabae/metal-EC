@@ -80,9 +80,14 @@ Othersaddress.create!(
   firstname: 'の母',
   kana_familyname: 'メタル',
   kana_firstname: 'ノハハ',
-  telephone_number: '09012345678',
-  postal_code: '5300001',
-  address: '大阪府大阪市北区梅田1-1-1'
+  telephone_number1: '090',
+  telephone_number2: '0002',
+  telephone_number3: '0330',
+  first_postal_code: '464',
+  last_postal_code: '2772',
+  statu_address: '東京都',
+  city_address: '新宿区',
+  street_address: '新宿15-6-1'
 )
 
 anothers = user.othersaddresses
