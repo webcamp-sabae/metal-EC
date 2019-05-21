@@ -1,36 +1,43 @@
 <div class="container">
-
+ <div class="row">
 <h1>注文内容の確認・変更</h1>
-
+ </div>
+  <p>注文ボタンを押していただくことで注文を確定することができます。</p>
 <h4>配送先住所</h4>
 
 <%= form_for(@receipt) do |f| %>
 
 <%= f.collection_select :user_id, User.all, :id, :address %>
+<%= link_to "お届け先の追加", new_othersaddress_path, class: "btn btn-primary" %>
 
-<ul>
-   <%= link_to "お届け先の追加", new_othersaddress_path, class: "btn btn-primary" %>
-</ul>
-<p>支払方法</p>
-
-<label>
-  <%= f.radio_button :payment, "1" %>銀行振込</label>
-<label>
-  <%= f.radio_button :payment, "2" %>クレジットカード</label>
-<label>
-  <%= f.radio_button :payment, "3" %>代金引換え</label>
-
-
+  <div class="row">
+    <div class="col-4 d-8-none">
 <p>配送方法: まとめて配送する</p>
+<table class="table">
+ <thead>
+    <tr>
+     <th scope="lg-5">支払方法</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+     <td><%= f.radio_button :payment, "1" %>銀行振込</td>
+     </tr>
+     <tr>
+      <td><%= f.radio_button :payment, "2" %>クレジットカード</td>
+      </tr>
+      <tr>
+       <td><%= f.radio_button :payment, "3" %>代金引換え</td>
+     </tr>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    </div>
+
 
 <%= f.submit "購入する" %>
 
 <% end %>
-#住所選択をさせる
-<% @othersaddress.each do |address| %>
-
-<%= address.address %>
-<% end %>
-
-
 </div>
+

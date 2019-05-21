@@ -7,7 +7,13 @@ end
 
 def create
    receipt = Receipt.new(receipt_params)
-   receipt.save
+   if receipt.save
+     flash[:ntice] = "購入が完了しました"
+     redirect_to thanks_path
+   else
+    flash[:notice] = "もう一度お試しください"
+    redirect_to new_receipt_path
+    end
 end
 
   private
