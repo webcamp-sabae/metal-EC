@@ -23,7 +23,10 @@
             <td><%= user.telephone_number %></td>
             <td><%= user.email %></td>
             <td><%= user.address %></td>
-            <td><button type="button" class="btn btn-outline-secondary">詳細</button></td>
+            <td>
+              <%= link_to '詳細', admins_user_path(user),
+               class:"btn btn-outline-secondary"%>
+            </td>
           </tr>
         <% end %>
       </tbody>
