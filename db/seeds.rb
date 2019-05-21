@@ -139,3 +139,21 @@ Purchase.create!(
   purches_price: 1916,
   amount:1
 )
+
+# User2を作成
+User.create!(
+  email: "metal-hanako@example.com",
+  familyname: '蛇忌',
+  firstname: '花子',
+  kana_familyname: 'ヘビイ',
+  kana_firstname: 'ハナコ',
+  telephone_number1: '090',
+  telephone_number2: '8888',
+  telephone_number3: '8888',
+  first_postal_code: "160",
+  last_postal_code: "0001",
+	statu_address: '神奈川県',
+	city_address: '横浜市港区',
+	street_address: '港1-1-1',
+  password: 'password'
+)
