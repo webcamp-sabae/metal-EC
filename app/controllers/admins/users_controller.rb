@@ -6,6 +6,7 @@ class Admins::UsersController < Admins::AdminsController
   end
 
   def show
+    @receipts = Receipt.where(user_id: @user)
   end
 
   def edit

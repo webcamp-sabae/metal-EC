@@ -43,158 +43,99 @@
   </div>
 
 
-    <div class="row">
-      <div class="col-md-5 mb-3">
-        <%= f.label :postal_code, '郵便番号' %>
-        <%= f.text_field :postal_code, class: "form-control", readonly: "readonly"  %>
-        <div class="invalid-feedback">
-          Please select a valid country.
-        </div>
-      </div>
-    </div>
-
-    <div class="mb-3">
-      <%= f.label :address, '住所' %>
-      <%= f.text_field :address, class: "form-control", readonly: "readonly"  %>
+  <div class="row">
+    <div class="col-md-5 mb-3">
+      <%= f.label :postal_code, '郵便番号' %>
+      <%= f.text_field :postal_code, class: "form-control", readonly: "readonly"  %>
       <div class="invalid-feedback">
-        Please enter your shipping address.
+        Please select a valid country.
       </div>
     </div>
+  </div>
 
-    <div class="mb-3">
-      <%= f.label :telephone_number, '電話番号' %>
-      <%= f.telephone_field :telephone_number, class: "form-control", readonly: "readonly"  %>
-      <div class="invalid-feedback">
-        Please enter a valid email address for shipping updates.
-      </div>
+  <div class="mb-3">
+    <%= f.label :address, '住所' %>
+    <%= f.text_field :address, class: "form-control", readonly: "readonly"  %>
+    <div class="invalid-feedback">
+      Please enter your shipping address.
     </div>
+  </div>
 
-    <div class="mb-3">
-      <%= f.label :email, 'メールアドレス' %>
-      <%= f.email_field :email, class: "form-control", readonly: "readonly"  %>
-      <div class="invalid-feedback">
-        Please enter a valid email address for shipping updates.
-      </div>
+  <div class="mb-3">
+    <%= f.label :telephone_number, '電話番号' %>
+    <%= f.telephone_field :telephone_number, class: "form-control", readonly: "readonly"  %>
+    <div class="invalid-feedback">
+      Please enter a valid email address for shipping updates.
     </div>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :email, 'メールアドレス' %>
+    <%= f.email_field :email, class: "form-control", readonly: "readonly"  %>
+    <div class="invalid-feedback">
+      Please enter a valid email address for shipping updates.
+    </div>
+  </div>
   <% end %>
 </div>
 
+
 <hr class="mb-12 mt-5">
+
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 ">
   <h1 class="h2">購入履歴一覧</h1>
 </div>
 
-<div class="receipt mb-5">
-  <div class="table-responsive">
-    <table class="table table-striped table-sm user-table">
-      <thead>
-        <tr>
-          <th>注文日</th>
-          <th>支払方法</th>
-          <th>対応状況</th>
-          <th>届先氏名</th>
-          <th>届先住所</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>2019/05/18</td>
-          <td>クレジット</td>
-          <td>配送済</td>
-          <td>メタル太郎</td>
-          <td>東京都渋谷区渋谷1-1-1</td>
-        </tr>
-      </tbody>
-    </table>
+<% @receipts.each do |receipt| %>
+  <div class="receipt mb-5">
+    <div class="table-responsive">
+      <table class="table table-striped table-sm user-table">
+        <thead>
+          <tr>
+            <th>注文日</th>
+            <th>支払方法</th>
+            <th>対応状況</th>
+            <th>届先氏名</th>
+            <th>届先住所</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= receipt.created_at %></td>
+            <td><%= receipt.payment %></td>
+            <td><%= receipt.status %></td>
+            <td><%= receipt.shipping_familyname %></td>
+            <td><%= receipt.shipping_address %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h6>購入商品</h6>
+    <div class="table-responsive">
+      <table class="table table-striped table-sm purchase-table">
+        <thead>
+          <tr>
+            <th>品番</th>
+            <th>ジャンル</th>
+            <th>アーティスト名</th>
+            <th>CD名</th>
+            <th>枚数</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% receipt.purchases.each do |purchase| %>
+            <tr>
+              <td><%= purchase.cd.id %></td>
+              <td><%= purchase.cd.genre.genre %></td>
+              <td><%= purchase.cd.artist.artist_name %></td>
+              <td><%= purchase.cd.single_album_name %></td>
+              <td><%= purchase.amount %>枚</td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
-
-  <h6>購入商品</h6>
-  <div class="table-responsive">
-    <table class="table table-striped table-sm purchase-table">
-      <thead>
-        <tr>
-          <th>品番</th>
-          <th>ジャンル</th>
-          <th>アーティスト名</th>
-          <th>CD名</th>
-          <th>枚数</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>234</td>
-          <td>メタル</td>
-          <td>メタリカ</td>
-          <td>メタリカ・ベスト</td>
-          <td>1枚</td>
-        </tr>
-        <tr>
-          <td>235</td>
-          <td>メタル</td>
-          <td>スリップノット</td>
-          <td>スリップノット・ベスト</td>
-          <td>1枚</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-
-</div>
-
-<div class="receipt mb-5">
-  <div class="table-responsive">
-    <table class="table table-striped table-sm user-table">
-      <thead>
-        <tr>
-          <th>注文日</th>
-          <th>支払方法</th>
-          <th>対応状況</th>
-          <th>届先氏名</th>
-          <th>届先住所</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>2019/05/18</td>
-          <td>クレジット</td>
-          <td>未配送</td>
-          <td>メタル太郎</td>
-          <td>東京都渋谷区渋谷1-1-1</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h6>購入商品</h6>
-  <div class="table-responsive">
-    <table class="table table-striped table-sm purchase-table">
-      <thead>
-        <tr>
-          <th>品番</th>
-          <th>ジャンル</th>
-          <th>アーティスト名</th>
-          <th>CD名</th>
-          <th>枚数</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>234</td>
-          <td>メタル</td>
-          <td>メタリカ</td>
-          <td>メタリカ・ベスト</td>
-          <td>1枚</td>
-        </tr>
-        <tr>
-          <td>235</td>
-          <td>メタル</td>
-          <td>スリップノット</td>
-          <td>スリップノット・ベスト</td>
-          <td>1枚</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+<% end %>
