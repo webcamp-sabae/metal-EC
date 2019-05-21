@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_20_081601) do
+ActiveRecord::Schema.define(version: 2019_05_21_073652) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -48,10 +48,10 @@ ActiveRecord::Schema.define(version: 2019_05_20_081601) do
     t.datetime "release", null: false
     t.integer "price", null: false
     t.integer "stock", null: false
-    t.text "cd_image"
     t.string "single_album_name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "cd_image_id"
     t.index ["single_album_name"], name: "index_cds_on_single_album_name"
   end
 
