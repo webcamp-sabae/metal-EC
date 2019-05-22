@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_many :othersaddresses
   has_many :receipts
 
+  acts_as_paranoid
+
   # adminsコントローラーからのデータ登録、更新の場合はバリデーションをスキップする
   # ======================================================
   def admins_namespace?
@@ -83,13 +85,13 @@ class User < ApplicationRecord
   end
 
   def set_address
-    self.address = [
-      @statu_address.gsub(/[ |　]/,''),
-      ' ',
-      @city_address.gsub(/[ |　]/,''),
-      '　',
-      @street_address.gsub(/[ |　]/,'')
-    ].join
+      self.address = [
+        @statu_address.gsub(/[ |　]/,''),
+        ' ',
+        @city_address.gsub(/[ |　]/,''),
+        '　',
+        @street_address.gsub(/[ |　]/,'')
+      ].join
   end
 
   # ============== address ==============

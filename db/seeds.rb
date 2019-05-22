@@ -163,6 +163,28 @@ User.create!(
   password: 'password'
 )
 
+# User3を作成
+User.create!(
+  email: "rock-jiro@example.com",
+  familyname: '六供',
+  firstname: '次郎',
+  kana_familyname: 'ロック',
+  kana_firstname: 'ジロウ',
+  telephone_number1: '090',
+  telephone_number2: '8888',
+  telephone_number3: '8888',
+  first_postal_code: "560",
+  last_postal_code: "0001",
+	statu_address: '大阪府',
+	city_address: '大阪市北区梅田１−１−１',
+	street_address: '全角スペース　　　　あ',
+  password: 'password'
+)
+
+delete_user = User.find(3)
+delete_user.destroy
+
+# User4を作成
 User.create!(
   email: "rock-jiro@example.com",
   familyname: '六供',
