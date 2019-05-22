@@ -6,7 +6,7 @@ Genre.create!(genre: 'hard-metal')
 Label.create!(label: 'Roadrunner Records')
 
 Cd.create!(artist_id: 1, label_id: 1, genre_id: 1, release: '2014-10-21',
-   price: 1916, stock: 10, cd_image: nil, single_album_name: 'The Gray Chapter')
+   price: 1916, stock: 10, cd_image_id: nil, single_album_name: 'The Gray Chapter')
 
 Song.create!(cd_id: 1, disc_num: 1, song_title: 'XIX')
 Song.create!(cd_id: 1, disc_num: 1, song_title: 'Sarcastrophe')
@@ -24,7 +24,7 @@ Song.create!(cd_id: 1, disc_num: 1, song_title: '13')
 Song.create!(cd_id: 1, disc_num: 1, song_title: '14')
 
 
-# 新規会員登録して商品を購入
+# 新規会員登録して複数商品を購入
 User.create!(
   email: "metal-taro@example.com",
   familyname: '目立留',
@@ -71,6 +71,37 @@ Purchase.create!(
   amount: 1
 )
 
+#
+Purchase.create!(
+  cd_id: 1,
+  receipt_id: 1,
+  purches_price: 1916,
+  amount: 1
+)
+
+
+# 発送済：　商品購入
+Receipt.create!(
+  user_id: user.id,
+  shipping_familyname: user.familyname,
+  shipping_firstname: user.firstname,
+  shipping_kana_familyname: user.kana_familyname,
+  shipping_kana_firstname: user.kana_firstname,
+  shipping_postal: user.postal_code,
+  shipping_address: user.address,
+  shipping_telephone_number: user.telephone_number,
+  payment: 1,
+  status: 2,
+  postage: 500
+)
+
+Purchase.create!(
+  cd_id: 1,
+  receipt_id: 2,
+  purches_price: 1916,
+  amount: 1
+)
+
 
 # 別の届け先を登録して商品を購入
 
@@ -80,9 +111,14 @@ Othersaddress.create!(
   firstname: 'の母',
   kana_familyname: 'メタル',
   kana_firstname: 'ノハハ',
-  telephone_number: '09012345678',
-  postal_code: '5300001',
-  address: '大阪府大阪市北区梅田1-1-1'
+  telephone_number1: '090',
+  telephone_number2: '0002',
+  telephone_number3: '0330',
+  first_postal_code: '464',
+  last_postal_code: '2772',
+  statu_address: '東京都',
+  city_address: '新宿区',
+  street_address: '新宿15-6-1'
 )
 
 anothers = user.othersaddresses
@@ -104,7 +140,25 @@ Receipt.create!(
 
 Purchase.create!(
   cd_id: 1,
-  receipt_id: 2,
+  receipt_id: 3,
   purches_price: 1916,
   amount:1
+)
+
+# User2を作成
+User.create!(
+  email: "metal-hanako@example.com",
+  familyname: '蛇忌',
+  firstname: '花子',
+  kana_familyname: 'ヘビイ',
+  kana_firstname: 'ハナコ',
+  telephone_number1: '090',
+  telephone_number2: '8888',
+  telephone_number3: '8888',
+  first_postal_code: "160",
+  last_postal_code: "0001",
+	statu_address: '神奈川県',
+	city_address: '横浜市港区',
+	street_address: '港1-1-1',
+  password: 'password'
 )
