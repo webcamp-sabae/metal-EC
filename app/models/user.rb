@@ -1,3 +1,4 @@
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -25,7 +26,7 @@ class User < ApplicationRecord
     @class_name = class_name
   end
 
-# ======================================================
+# ============== postal_code ==============
 
 
   #先にset_postal_codeを呼ばないとバリデーションエラーになる
@@ -44,33 +45,48 @@ class User < ApplicationRecord
     self.postal_code = [@first_postal_code, @last_postal_code].join
   end
 
+
+  # ============== address ==============
+  # /(?<status>.*[都|道|府|県])(?<address>.*)[ ](?<building>.*)/
+  # data保存時に住所とマンション名で半角スペースを入れる
+  # マンション名の半角スペースは削除して保存する
+
   # 住所の仮想カラム
   attr_accessor :statu_address, :city_address, :street_address
 
-  validates :statu_address, :city_address, :street_address, presence: true,
+  validates :statu_address, :city_address, presence: true,
   unless: :admins_namespace?
 
-  #
   before_validation :set_address, unless: :admins_namespace?
 
-  def statu_address
 
-  	@statu_address || self.address[/(.*)[都道府県]/] if self.address.present?
+  def split_address
+    address_pattern = /(?<statu>.*)[ ](?<city>.*)[　](?<street>.*)/
+    return address_pattern.match(self.address)
+  end
+
+  def statu_address
+  	@statu_address || self.split_address[:statu] if self.address.present?
   end
 
   def city_address
-  	@city_address || self.address[/((?!.*都|道|府|県).)*?[地|号]|((?!.*都|道|府|県).)*?(.+(\w)+[-])/] if self.address.present?
+  	@city_address || self.split_address[:city] if self.address.present?
   end
 
   def street_address
-  	@street_address || self.address[/[ ](.*)/] if self.address.present?
+  	@street_address || self.split_address[:street] if self.address.present?
   end
 
-  #
   def set_address
-  	self.address = [@statu_address, @city_address, @street_address].join
+  	self.address = [
+      @statu_address.gsub(/[ |　]/,''),
+      ' ',
+      @city_address.gsub(/[ |　]/,''),
+      '　',
+      @street_address.gsub(/[ |　]/,'')].join
   end
 
+  # ============== telephone_number ==============
 
   # 電話番号の仮想カラム
   attr_accessor :telephone_number1, :telephone_number2, :telephone_number3
