@@ -25,7 +25,6 @@
           <td><%= cd.price %>円</td>
           <td><%= cd.stock %>個</td>
           <td><%= link_to "削除", class: "btn btn-danger btn-sm margin_top", method: :delete %></td>
-
         </tr>
       </tbody>
       <tbody>
@@ -33,16 +32,16 @@
           <th></th>
           <td></td>
           <td></td>
-          <td>送料：<%= @postage %></td>
+          <td>送料：<%= @postage %>円</td>
           <td>小計(税込)：<%= num += cd.price * cd.stock + @postage %>円</td>
           <td></td>
-                    <% end %>
         </tr>
       </tbody>
     </table>
       <%= link_to "カートを空にする", @cart, method: :delete, class: "btn btn-warning", data:{confirm: "本当に空にしますか？"} %>
       <%= link_to "お支払いへ進む", new_receipt_path, class: "btn btn-primary" %>
     </div>
+     <% end %>
     <div class ="col-4">
   </div>
  </div>
