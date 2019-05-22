@@ -22,7 +22,8 @@ Rails.application.routes.draw do
 		resources :receipts, only: [:update, :destroy]
 		resources :users, only: [:index,:show, :edit, :update, :destroy]
 		resources :artists, only: [:new, :index, :create, :destroy, :update, :edit]
-		resources :cds
-		resources :songs,only: [:create, :edit, :update, :destroy]
+		resources :cds do
+		  resource :songs,only: [:create, :edit, :update, :destroy]
+    end
 	end
 end

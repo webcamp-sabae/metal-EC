@@ -1,4 +1,7 @@
 class Admins::ArtistsController < Admins::AdminsController
+
+	before_action :set_artist, only: [:destroy]
+
 	def new
 		@artist = Artist.new
 	end
@@ -10,7 +13,7 @@ class Admins::ArtistsController < Admins::AdminsController
 		else
 		@cd = Cd.new
      	 render "admins/cds/new"
-   		end
+   	end
 	end
 
 	def index
@@ -24,12 +27,16 @@ class Admins::ArtistsController < Admins::AdminsController
 	end
 
 	def destroy
-		@artist = Artist.find(params[:id])
 		@artist.destroy
 		redirect_to new_admins_cd_path
 	end
 
 	private
+
+		def set_artist
+			@artist = Artist.find(params[:id])
+		end
+
 		def artist_params
 			params.require(:artist).permit(:artist_name)
 		end
