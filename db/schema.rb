@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_21_073652) do
+ActiveRecord::Schema.define(version: 2019_05_22_065246) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -112,8 +112,8 @@ ActiveRecord::Schema.define(version: 2019_05_21_073652) do
 
   create_table "songs", force: :cascade do |t|
     t.integer "cd_id", null: false
-    t.integer "disc_num", null: false
-    t.string "song_title", null: false
+    t.integer "disc_num"
+    t.string "song_title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["song_title"], name: "index_songs_on_song_title"
