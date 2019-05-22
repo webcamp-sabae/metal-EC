@@ -32,21 +32,22 @@ class User < ApplicationRecord
   # 住所の仮想カラム
   attr_accessor :statu_address, :city_address, :street_address
 
-  validates :statu_address, :city_address, :street_address, presence: true
-
+  validates :statu_address, :city_address, presence: true
+  validates :street_address, allow_blank: true, format: { with: //}
   #
   before_validation :set_address
 
   def statu_address
-  	@statu_address if self.address.present?
+
+  	@statu_address || self.address[/(.*)[都道府県]/] if self.address.present?
   end
 
   def city_address
-  	@city_address if self.address.present?
+  	@city_address || self.address[/((?!.*都|道|府|県).)*?[地|号]|((?!.*都|道|府|県).)*?(.+(\w)+[-])/] if self.address.present?
   end
 
   def street_address
-  	@street_address if self.address.present?
+  	@street_address || self.address[/[ ](.*)/] if self.address.present?
   end
 
   #

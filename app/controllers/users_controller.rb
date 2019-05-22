@@ -5,6 +5,8 @@ class UsersController < ApplicationController
 
   def create
   	@user = User.new(user_params)
+  	pp @user
+  	@num.street_address.to_s
   	if @user.save
   		redirect_to user_path(current_user.id)
   	else
@@ -13,6 +15,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+  	@user = User.find(params[:id])
   end
 
   def update
