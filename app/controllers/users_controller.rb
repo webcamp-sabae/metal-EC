@@ -1,13 +1,14 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:update]
+  before_action :set_user, only: [:update, :show, :edit]
 
   def show
-  	@user = User.find(params[:id])
+    # before_actionで@userを呼びしているのでコメントアウトします。
+    # コードの重複がへります。
+  	# @user = User.find(params[:id])
   end
 
   def create
   	@user = User.new(user_params)
-
   	if @user.save
   		redirect_to user_path(current_user.id)
   	else
@@ -16,7 +17,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-  	@user = User.find(params[:id])
+    # before_actionで@userを呼びしているのでコメントアウトします。
+    # コードの重複がへります。
+  	# @user = User.find(params[:id])
   end
 
   def update
@@ -34,26 +37,27 @@ class UsersController < ApplicationController
   def destory
 
   end
+
   private
 
     def set_user
       @user = User.find(params[:id])
     end
 
-  def user_params
-  	params.require(:user).permit(
-      :familyname,
-      :firstname,
-      :kana_familyname,
-      :kana_firstname,
-      :first_postal_code,
-      :last_postal_code,
-      :statu_address,
-      :city_address,
-      :street_address,
-      :telephone_number1,
-      :telephone_number2,
-      :telephone_number3
-    )
-  end
+    def user_params
+      params.require(:user).permit(
+        :familyname,
+        :firstname,
+        :kana_familyname,
+        :kana_firstname,
+        :first_postal_code,
+        :last_postal_code,
+        :statu_address,
+        :city_address,
+        :street_address,
+        :telephone_number1,
+        :telephone_number2,
+        :telephone_number3
+        )
+    end
 end
