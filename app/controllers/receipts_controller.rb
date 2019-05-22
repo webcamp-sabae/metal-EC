@@ -2,6 +2,7 @@ class ReceiptsController < ApplicationController
 
 def new
   @receipt = Receipt.new
+  @othersaddress = Othersaddress.all
 end
 
 def create
