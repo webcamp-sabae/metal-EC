@@ -20,15 +20,15 @@
 	</div>
 
 	<p></p>
-
+<!--
 	<div class="card border-dark">
 		<h1 class="card-header">CDを登録</h1>
 		<div class="card-body">
 			<div class="row">
+				<%= form_for ([:admins, @cd]) do |f| %>
 				<div class="col-sm-6">
+					<h3>ジャケット画像を登録</h3>
 					<div class="card card-body">
-						<h3>ジャケット画像を登録</h3>
-						<%= form_for ([:admins, @cd]) do |f| %>
 						<div id="img_field" onClick="$('#file').click()" ></div>
 						<%= f.attachment_field :cd_image, class: "image img-fluid", id: "file" %>
 						<script>
@@ -70,49 +70,89 @@
 					</div>
 					<div class="form-group">
 					 <%= f.label :label_id, "【必須】レーベル" %>
-					<div class="col-xs-10">
-					 <%= f.collection_select :label_id, Label.all, :id, :label, {}, {class: "form-control"} %>
+						<div class="col-xs-10">
+						 <%= f.collection_select :label_id, Label.all, :id, :label, {}, {class: "form-control"} %>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-6">
-				<div class="form-group">
-				 <%= f.label :genre_id, "【必須】ジャンル" %>
-				 <%= f.collection_select :genre_id, Genre.all, :id, :genre, {}, {class: "form-control"} %>
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="form-group">
+					 <%= f.label :genre_id, "【必須】ジャンル" %>
+					 <%= f.collection_select :genre_id, Genre.all, :id, :genre, {}, {class: "form-control"} %>
+					</div>
+					<div class="form-group">
+					 <%= f.label :price, "【必須】価格" %>
+					 <%= f.text_field :price, class: "form-control" %>
+					</div>
 				</div>
-				<div class="form-group">
-				 <%= f.label :price, "【必須】価格" %>
-				 <%= f.text_field :price, class: "form-control" %>
+				<div class="col-sm-6">
+					<div class="form-group">
+					 <%= f.label :release, "【必須】発売日" %>
+					 <%= f.text_field :release, class: "form-control" %>
+					</div>
+					<div class="form-group">
+					 <%= f.label :stock, "【必須】在庫" %>
+					 <%= f.text_field :stock, class: "form-control" %>
+					</div>
 				</div>
 			</div>
-			<div class="col-sm-6">
+			<h1 class="card-header">曲名を登録</h1>
+			<div class="card-body">
 				<div class="form-group">
-				 <%= f.label :release, "【必須】発売日" %>
-				 <%= f.text_field :release, class: "form-control" %>
-				</div>
-				<div class="form-group">
-				 <%= f.label :stock, "【必須】在庫" %>
-				 <%= f.text_field :stock, class: "form-control" %>
-				</div>
-			</div>
-		</div>
-
-		<h1 class="card-header">曲名を登録</h1>
-		<div class="card-body">
-			<div class="form-group">
-				<div class="songs">
-					<%= f.fields_for :songs do |song| %>
-						<%= render 'song_fields', f: song %>
-					<% end %>
-				</div>
-					<div id="links">
+					<div class="songs">
+						<%= f.fields_for :songs do |song| %>
+							<%= render 'song_fields', f: song %>
+						<% end %>
+					</div>
+					<div class="links">
 			      <%= link_to_add_association 'add songs',f, :songs %>
 			    </div>
-				<%= f.submit '登録' %>
-				<% end %>
+					<%= f.submit '登録' %>
+				</div>
 			</div>
+		<% end %>
 		</div>
 	</div>
-</div>
+	-->
+<%= form_for ([:admins, @cd]) do |f| %>
+  <div class="field">
+    <%= f.label :single_album_name, "【必須】シングル/アルバム名" %>
+		<%= f.text_field :single_album_name, class: "form-control" %>
+  </div>
+  <div class="field">
+    <%= f.label :artist_id, "【必須】アーティスト" %>
+		<%= f.collection_select :artist_id, Artist.all, :id, :artist_name, {}, {class: "form-control"} %>
+  </div>
+  <div class="field">
+  	<%= f.label :label_id, "【必須】レーベル" %>
+  	<%= f.collection_select :label_id, Label.all, :id, :label, {}, {class: "form-control"} %>
+  </div>
+  <div class="field">
+  	<%= f.label :genre_id, "【必須】ジャンル" %>
+		<%= f.collection_select :genre_id, Genre.all, :id, :genre, {}, {class: "form-control"} %>
+  </div>
+  <div class="field">
+  	<%= f.label :price, "【必須】価格" %>
+		<%= f.text_field :price, class: "form-control" %>
+  </div>
+  <div class="field">
+  	<%= f.label :release, "【必須】発売日" %>
+		<%= f.text_field :release, class: "form-control" %>
+  </div>
+  <div class="field">
+  	<%= f.label :stock, "【必須】在庫" %>
+		<%= f.text_field :stock, class: "form-control" %>
+  </div>
+  <h3>Songs</h3>
+  <div id='songs'>
+    <%= f.fields_for :songs do |song| %>
+      <%= render 'song_fields', :f => song %>
+    <% end %>
+    <div class='links'>
+      <%= link_to_add_association 'add song', f, :songs %>
+    </div>
+  </div>
+  <%= f.submit 'Save' %>
+<% end %>
