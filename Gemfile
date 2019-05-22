@@ -83,4 +83,4 @@ gem 'bootstrap', '~> 4.3.1'
 
 gem "jquery-rails"
 
-gem 'nested_form_fields'
+gem 'cocoon'

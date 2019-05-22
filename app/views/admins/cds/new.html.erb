@@ -102,20 +102,14 @@
 		<h1 class="card-header">曲名を登録</h1>
 		<div class="card-body">
 			<div class="form-group">
-					<%= f.nested_fields_for :songs, wrapper_tag: :div do |s| %>
-						<div class="row">
-							<div class="col-2">
-							 <%= s.label :disc_num, "ディスクNo." %>
-							 <%= s.text_field :disc_num, class: "form-control" %>
-							</div>
-							<div class="col-10">
-							 <%= s.label :song_title, "曲名" %>
-							 <%= s.text_field :song_title, class: "form-control" %>
-							 <%= s.remove_nested_fields_link 'Delete', class: 'btn btn-danger', role: 'button' %>
-							</div>
-						</div>
+				<div class="songs">
+					<%= f.fields_for :songs do |song| %>
+						<%= render 'song_fields', f: song %>
 					<% end %>
-				<%= f.add_nested_fields_link :songs, 'Add new', class: 'btn btn-primary', role: 'button' %>
+				</div>
+					<div id="links">
+			      <%= link_to_add_association 'add songs',f, :songs %>
+			    </div>
 				<%= f.submit '登録' %>
 				<% end %>
 			</div>
