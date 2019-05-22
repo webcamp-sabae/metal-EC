@@ -47,14 +47,9 @@ class User < ApplicationRecord
   # 住所の仮想カラム
   attr_accessor :statu_address, :city_address, :street_address
 
-<<<<<<< HEAD
-  validates :statu_address, :city_address, presence: true
-  validates :street_address, allow_blank: true, format: { with: //}
-=======
   validates :statu_address, :city_address, :street_address, presence: true,
   unless: :admins_namespace?
 
->>>>>>> dev
   #
   before_validation :set_address, unless: :admins_namespace?
 
