@@ -8,7 +8,7 @@
           <th>商品画像</th>
           <th>商品名</th>
           <th>アーティスト名</th>
-          <th>価格(円)</th>
+          <th>価格(税込)</th>
           <th>数量</th>
           <th> </th>
         </tr>
@@ -27,11 +27,10 @@
         </tr>
       </tbody>
     </table>
-      <%= link_to "カートを空にする", @cart, method: :delete, class: "btn btn-warning", confirm: "本当に大丈夫ですか" %>
+      <%= link_to "カートを空にする", @cart, method: :delete, class: "btn btn-warning", data:{confirm: "本当に大丈夫ですか"} %>
       <%= link_to "お支払いへ進む", new_receipt_path, class: "btn btn-primary" %>
     </div>
     <div class ="col-4">
-
   </div>
  </div>
 </div>

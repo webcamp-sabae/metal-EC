@@ -2,7 +2,13 @@ class ReceiptsController < ApplicationController
 
 def new
   @receipt = Receipt.new
-  @othersaddress = Othersaddress.all
+  @othersaddress = Othersaddress.where(user_id: User.first.id)
+  @addresses = []
+
+  @othersaddress.each do |value|
+  @addresses.push(value.address)
+  end
+  @addresses << (User.first.address)
 end
 
 def create
