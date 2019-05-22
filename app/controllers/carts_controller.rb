@@ -2,7 +2,8 @@ class CartsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @carts = Cart.all
+    @carts = Cart.all.includes(:cd,:user)
+    @postage = 500
     @cds = Cd.all
   end
 
@@ -10,6 +11,10 @@ class CartsController < ApplicationController
    @cart = Cart.new(cart_params)
    @cart.save
    redirect_to carts_path
+  end
+
+  def method
+
   end
 
   def update
