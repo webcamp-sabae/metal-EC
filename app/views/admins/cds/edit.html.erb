@@ -80,7 +80,7 @@
     <h1 class="card-header">曲名を登録</h1>
     <div class="card-body">
       <div class="form-group">
-        <%= f.fields_for :songs do |s| %>
+        <%= f.fields_for :songs, :url => { :action => :update } do |s| %>
         <div class="row">
           <div class="col-2">
            <%= s.label :disc_num, "ディスクNo." %>
