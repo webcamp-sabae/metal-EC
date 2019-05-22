@@ -10,11 +10,26 @@ class User < ApplicationRecord
    # 郵便番号の仮想カラム
    attr_accessor :first_postal_code, :last_postal_code
 
-  validates :postal_code, format: { with: /\A\d{7}\z/ }
-  validates :first_postal_code, :last_postal_code, presence: true
+  validates :postal_code, format: { with: /\A\d{7}\z/ }, unless: :admins_namespace?
+  validates :first_postal_code, :last_postal_code, presence: true,
+   unless: :admins_namespace?
+
+# adminsコントローラーからのデータ登録、更新の場合はバリデーションをスキップする
+# ======================================================
+
+  def admins_namespace?
+    @class_name.include?('Admins') if @class_name
+  end
+
+  def namespace(class_name)
+    @class_name = class_name
+  end
+
+# ======================================================
+
 
   #先にset_postal_codeを呼ばないとバリデーションエラーになる
-  before_validation :set_postal_code
+  before_validation :set_postal_code, unless: :admins_namespace?
 
   def first_postal_code
     @first_postal_code || self.postal_code[0..2] if self.postal_code.present?
@@ -32,10 +47,16 @@ class User < ApplicationRecord
   # 住所の仮想カラム
   attr_accessor :statu_address, :city_address, :street_address
 
+<<<<<<< HEAD
   validates :statu_address, :city_address, presence: true
   validates :street_address, allow_blank: true, format: { with: //}
+=======
+  validates :statu_address, :city_address, :street_address, presence: true,
+  unless: :admins_namespace?
+
+>>>>>>> dev
   #
-  before_validation :set_address
+  before_validation :set_address, unless: :admins_namespace?
 
   def statu_address
 
@@ -59,11 +80,12 @@ class User < ApplicationRecord
   # 電話番号の仮想カラム
   attr_accessor :telephone_number1, :telephone_number2, :telephone_number3
 
-  validates :telephone_number, format: { with: /\A\d{11}\z/ }
-  validates :telephone_number1, :telephone_number2, :telephone_number3, presence: true
+  validates :telephone_number, format: { with: /\A\d{11}\z/ },
+  unless: :admins_namespace?
+  validates :telephone_number1, :telephone_number2, :telephone_number3, presence: true, unless: :admins_namespace?
 
   #
-  before_validation :set_telephone_number
+  before_validation :set_telephone_number, unless: :admins_namespace?
 
   def telephone_number1
   	@telephone_number1 || self.telephone_number[0..2] if self.telephone_number.present?
