@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:update, :show, :edit]
+  before_action :set_user, only: [:update, :show, :edit, :destroy]
 
   def show
     # before_actionで@userを呼びしているのでコメントアウトします。
@@ -34,8 +34,12 @@ class UsersController < ApplicationController
     end
   end
 
-  def destory
-
+  def destroy
+    @user.destroy
+    respond_to do |format|
+      format.html { redirect_to admins_users_path, notice: 'User was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
 
   private
