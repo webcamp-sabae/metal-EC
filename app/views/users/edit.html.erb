@@ -1,2 +1,72 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<div class="body" style="margin-top: 50px;">
+<p class="notice"></p>
+<div class="container">
+    <div class="row">
+<div class="col-md-8 col-md-offset-2">
+	<table class="table table-bordered">
+		<h1>アカウント情報の変更</h1>
+		<tbody>
+			<%= form_with model:(@user) do |f|%>
+			<div class="field">
+				<%= f.label :性 %><br />
+				<%= f.text_field :familyname, autofocus: true, autocomplete: "familyname" %>
+			</div>
+			<div class="field">
+			<%= f.label :名 %><br />
+    <%= f.text_field :firstname, autofocus: true, autocomplete: "firstname" %>
+  </div>
+  <div class="field">
+    <%= f.label :カナ性 %><br />
+    <%= f.text_field :kana_familyname, autofocus: true, autocomplete: "kana_familyname" %>
+  </div>
+  <div class="field">
+    <%= f.label :カナ名 %><br />
+    <%= f.text_field :kana_firstname, autofocus: true, autocomplete: "kana_firstname" %>
+  </div>
+  <div class="field">
+    <%= f.label :郵便番号 %><br />
+    <%= f.text_field :first_postal_code, :size=>'7' %>
+    <span>−</span>
+    <%= f.text_field :last_postal_code, :size=>'7'%>
+  </div>
+  <div class="field">
+    <%= f.label :都道府県 %><br />
+    <%= f.text_field :statu_address %><br />
+    <%= f.label :住所（市区町村番地） %><br />
+    <%= f.text_field :city_address %><br />
+    <%= f.label :住所（ビル・マンション） %><br />
+    <%= f.text_field :street_address %>
+  </div>
+  <div class="field">
+    <%= f.label :電話番号 %><br />
+    <%= f.text_field :telephone_number1, :size=>'5' %>
+    <span>-</span>
+   <%= f.text_field :telephone_number2, :size=>'5' %>
+    <span>-</span>
+    <%= f.text_field :telephone_number3, :size=>'5' %>
+  </div>
+  <div class="field">
+    <%= f.label :メールアドレス %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :パスワード %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+  <div class="field">
+    <%= f.label :パスワード確認 %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+			<% end %>
+		</tbody>
+	</table>
+	<a class="btn btn-default pull-right" href="#" >購入履歴一覧</a>
+	<a class="btn btn-default pull-right" href="#" >編集</a>
+</div>
+</div>
+</div>
+</div>

@@ -8,28 +8,37 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 <body>
-  <header class="navbar navbar-fixed-top navbar-inverse">
+  <header class="">
+<!------ Include the above in your HEAD tag ---------->
 
+<header>
+  <!--  Remove dark nav  -->
+  <nav class="nav dark-nav">
     <div class="container">
-       <nav class="nav navbar-nav navbar-left">
-    <span style="color: #fff; font-size: 50px;">メタルECサイト</span>
+      <div class="nav-heading">
+        <button class="toggle-nav" data-toggle="open-navbar1"><i class="fa fa-align-right"></i></button>
+        <a class="brand" href="#">メタルECサイト</a>
+      </div>
+      <div class="menu" id="open-navbar1">
+        <ul class="list">
+          <li><a href="#">Home</a></li>
+          
+          <li><a href="http://dev.gilan-co.com/">About us</a></li>
+          <li><%= link_to  do %>
+            <span>マイページ</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete, class: "logout" do %>
+            <span>ログアウト</span>
+          <% end %>
+        </li>
+        </ul>
+      </div>
+    </div>
   </nav>
-  <nav>
-    <ul class="nav navbar-nav navbar-right">
-      <li> 
-        <span class="glyphicon glyphicon-home" aria-hidden="true">カート</span>
-      </li>
-       <li>
-        <span>マイページ</span>
-      </li>
-       <li>
-        <%= link_to destroy_user_session_path, method: :delete, class: "logout" do %>
-          <span> logout</span>
-        <% end %>
-      </li>
-    </ul>
-  </nav>
-  </div>
+</header>
+
 </header>
     <%= yield %>
 <footer>

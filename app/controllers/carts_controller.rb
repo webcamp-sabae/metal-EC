@@ -5,6 +5,7 @@ class CartsController < ApplicationController
   end
 
   def create
+   cd =Cd.find(params[:id])
    @cart = Cart.new
    @cart.save
   end

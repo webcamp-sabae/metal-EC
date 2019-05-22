@@ -1,6 +1,10 @@
+
+
 require_relative 'boot'
 
 require 'rails/all'
+
+
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -17,11 +21,13 @@ module MetalEc
     # the framework and any gems in your application.
 
 
-    
+
     config.generators do |g|
       g.skip_routes true
     end
-    
+
 
   end
+
+
 end
