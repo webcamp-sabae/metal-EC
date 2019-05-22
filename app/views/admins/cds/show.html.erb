@@ -35,6 +35,23 @@
 					  </tr>
 					</table>
 				</div>
+				<div class="col-sm-12">
+					<div class="table">
+						<div class="table-title">曲名</div>
+						<thead>
+							<tr>
+								<th>ディスクNo.</th>
+								<th>曲名</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% @songs.each do |song| %>
+							<td><%= song.disc_num %></td>
+							<td><%= song.song_title %></td>
+							<% end %>
+						</tbody>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
