@@ -6,7 +6,10 @@ Genre.create!(genre: 'hard-metal')
 Label.create!(label: 'Roadrunner Records')
 
 Cd.create!(artist_id: 1, label_id: 1, genre_id: 1, release: '2014-10-21',
-   price: 1916, stock: 10, cd_image_id: nil, single_album_name: 'The Gray Chapter')
+   price: 1916, stock: 10, cd_image_id: nil, single_album_name: 'The Gray Chapter',
+   cd_comment: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+     quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.")
 
 Song.create!(cd_id: 1, disc_num: 1, song_title: 'XIX')
 Song.create!(cd_id: 1, disc_num: 1, song_title: 'Sarcastrophe')
@@ -37,8 +40,8 @@ User.create!(
   first_postal_code: "150",
   last_postal_code: "0001",
 	statu_address: '東京都',
-	city_address: '渋谷区',
-	street_address: '渋谷1-1-1',
+	city_address: '渋谷区渋谷1-1-1',
+	street_address: '',
   password: 'password'
 )
 
@@ -158,7 +161,46 @@ User.create!(
   first_postal_code: "160",
   last_postal_code: "0001",
 	statu_address: '神奈川県',
-	city_address: '横浜市港区',
-	street_address: '港1-1-1',
+	city_address: '横浜市港区港1-1-1',
+	street_address: '半角スペース    1',
+  password: 'password'
+)
+
+# User3を作成
+User.create!(
+  email: "rock-jiro@example.com",
+  familyname: '六供',
+  firstname: '次郎',
+  kana_familyname: 'ロック',
+  kana_firstname: 'ジロウ',
+  telephone_number1: '090',
+  telephone_number2: '8888',
+  telephone_number3: '8888',
+  first_postal_code: "560",
+  last_postal_code: "0001",
+	statu_address: '大阪府',
+	city_address: '大阪市北区梅田１−１−１',
+	street_address: '全角スペース　　　　あ',
+  password: 'password'
+)
+
+delete_user = User.find(3)
+delete_user.destroy
+
+# User4を作成
+User.create!(
+  email: "rock-jiro@example.com",
+  familyname: '六供',
+  firstname: '次郎',
+  kana_familyname: 'ロック',
+  kana_firstname: 'ジロウ',
+  telephone_number1: '090',
+  telephone_number2: '8888',
+  telephone_number3: '8888',
+  first_postal_code: "560",
+  last_postal_code: "0001",
+	statu_address: '大阪府',
+	city_address: '大阪市北区梅田１−１−１',
+	street_address: '全角スペース　　　　あ',
   password: 'password'
 )
