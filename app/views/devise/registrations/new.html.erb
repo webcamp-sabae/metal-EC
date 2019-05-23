@@ -35,15 +35,15 @@
     <%= f.label :住所（市区町村番地） %><br />
     <%= f.text_field :city_address %><br />
     <%= f.label :住所（ビル・マンション） %><br />
-    <%= f.text_field :street_address %>
+    <%= f.text_field :street_address, value:" " %>
   </div>
   <div class="field">
     <%= f.label :電話番号 %><br />
-    <%= f.text_field :telephone_number1 %>
+    <%= f.text_field :telephone_number1, :size=>'5' %>
     <span>-</span>
-   <%= f.text_field :telephone_number2 %>
+   <%= f.text_field :telephone_number2, :size=>'5'%>
     <span>-</span>
-    <%= f.text_field :telephone_number3 %>
+    <%= f.text_field :telephone_number3, :size=>'5'%>
   </div>
   <div class="field">
     <%= f.label :メールアドレス %><br />
