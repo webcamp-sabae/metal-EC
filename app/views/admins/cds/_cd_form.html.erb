@@ -1,7 +1,8 @@
-<div class="card border-dark">
+<div class="card border-dark form-mgn">
   <h1 class="card-header">CDを登録</h1>
   <div class="card-body">
     <%= form_for ([:admins, @cd]) do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
     <div class="row">
       <div class="col-5">
         <div class="field">
@@ -48,7 +49,9 @@
         </div>
         <div class="field">
           <%= f.label :release, "【必須】発売日" %>
-          <%= f.text_field :release, class: "form-control" %>
+          <div class=" col-sm-12">
+          <%= f.date_select :release, {default: Date.today }, class: "form-control bootstrap-date" %>
+        </div>
         </div>
         <div class="field">
           <%= f.label :stock, "【必須】在庫" %>
@@ -74,13 +77,16 @@
       <h3>Songs</h3>
       <div id='songs'>
         <%= f.fields_for :songs do |song| %>
-          <%= render 'song_fields', :f => song %>
+        <%= render 'layouts/error_messages', model: f.object %>
+          <%= render 'admins/cds/song_fields', :f => song %>
         <% end %>
-        <div class='links'>
-          <%= link_to_add_association 'add song', f, :songs %>
+        <div class='links text-right'>
+          <%= link_to_add_association 'add song', f, :songs, partial: "admins/cds/song_fields", class:"btn btn-primary my-1"%>
         </div>
       </div>
-      <%= f.submit 'Save' %>
+      <div class="col-sm-12">
+        <%= f.submit 'Save', class:"btn btn-success btn-block my-1" %>
+      </div>
     <% end %>
   </div>
 </div>

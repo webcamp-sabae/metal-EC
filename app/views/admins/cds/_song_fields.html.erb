@@ -9,7 +9,8 @@
      <%= f.label :song_title, "曲名" %>
      <%= f.text_field :song_title, class: "form-control" %>
     </div>
-
-    <%= link_to_remove_association "remove song", f %>
+    <div class="text-right">
+      <%= link_to_remove_association "曲名を削除", f, class: "btn btn-danger my-1" %>
+    </div>
   </div>
 </div>

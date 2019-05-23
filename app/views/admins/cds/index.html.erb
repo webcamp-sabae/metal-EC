@@ -14,6 +14,7 @@
           <th>枚数</th>
           <th></th>
           <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -28,7 +29,7 @@
           <td><%= cd.stock %></td>
           <td><%= link_to "詳細", admins_cd_path(cd.id), :class => "btn btn-outline-success btn-sm" %></td>
           <td><%= link_to "編集", edit_admins_cd_path(cd.id), :class => "btn btn-outline-info btn-sm" %></td>
-          <td><%= link_to "削除", admins_cd_path(cd.id), method: :delete, "data-confilm" => "本当に削除しますか？",
+          <td><%= link_to "削除", admins_cd_path(cd.id), method: :delete, "data-confirm" => "本当に削除しますか？",
            :class => "btn btn-outline-danger btn-sm" %></td>
         </tr>
         <% end %>

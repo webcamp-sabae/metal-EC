@@ -5,6 +5,12 @@ class Admins::CdsController < Admins::AdminsController
 	def new
 		@cd = Cd.new
 		@artist = Artist.new
+			 if params[:id].present?
+			    @artist = Artist.find(params[:id])
+			 else
+			    @artist = Artist.new
+			 end
+		@artists = Artist.all
 		# @song = Song.new
 		@cd.songs.build
 	end
@@ -14,7 +20,7 @@ class Admins::CdsController < Admins::AdminsController
 	end
 
 	def show
-
+		@songs = @cd.songs
 	end
 
 	def edit
@@ -23,15 +29,22 @@ class Admins::CdsController < Admins::AdminsController
 
 	def create
 		@cd = Cd.new(cd_params)
-		@cd.save
+		if @cd.save
 		redirect_to new_admins_cd_path
+	  else
+	  	@artist = Artist.new
+	  	@artists = Artist.all
+	  	render "admins/cds/new"
+	  end
+
 	end
 
 	def update
   	if @cd.update(cd_params)
   	   redirect_to admins_cd_path(@cd.id), notice: "cd was successfully updated."
-    else render :edit
-   end
+    else
+    	render :edit
+   	end
 	end
 
 	def destroy
