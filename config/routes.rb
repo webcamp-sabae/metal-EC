@@ -20,10 +20,10 @@ Rails.application.routes.draw do
   		root to: 'admins#index'
   		resources :purchases, only: [:index]
 		resources :receipts, only: [:update, :destroy]
-		resources :users, only: [:index,:show, :update, :destroy]
-		resources :artists, only: [:new, :create, :destroy, :update, :edit]
+		resources :users, only: [:index,:show, :edit, :update, :destroy]
+		resources :artists, only: [:new, :index, :create, :destroy, :update, :edit]
 		resources :cds do
-			resources :songs,only: [:create, :edit, :update, :destroy]
-		end
+		  resource :songs,only: [:create, :edit, :update, :destroy]
+    end
 	end
 end
