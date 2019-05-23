@@ -1,4 +1,4 @@
-<div class="card border-dark form-mgn">
+<div class="card border-dark form-mgn mt-3">
   <h1 class="card-header">CDを登録</h1>
   <div class="card-body">
     <%= form_for ([:admins, @cd]) do |f| %>
@@ -6,7 +6,7 @@
     <div class="row">
       <div class="col-5">
         <div class="field">
-          <h3>ジャケット画像を登録</h3>
+          <h4>ジャケット画像を登録</h4>
           <%= f.attachment_field :cd_image, class: "image", id: "file" %>
           <div id="img_field" onClick="$('#file').click()" ></div>
           <!-- 画像をプレビューさせるためのjs -->
@@ -74,14 +74,14 @@
           <%= f.collection_select :genre_id, Genre.all, :id, :genre, {}, {class: "form-control"} %>
         </div>
 
-      <h3>Songs</h3>
+      <h3 class="my-4">曲名を追加</h3>
       <div id='songs'>
         <%= f.fields_for :songs do |song| %>
         <%= render 'layouts/error_messages', model: f.object %>
           <%= render 'admins/cds/song_fields', :f => song %>
         <% end %>
         <div class='links text-right'>
-          <%= link_to_add_association 'add song', f, :songs, partial: "admins/cds/song_fields", class:"btn btn-primary my-1"%>
+          <%= link_to_add_association '曲名を追加', f, :songs, partial: "admins/cds/song_fields", class:"btn btn-primary btn-sm my-1"%>
         </div>
       </div>
       <div class="col-sm-12">
