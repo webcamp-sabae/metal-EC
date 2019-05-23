@@ -6,7 +6,10 @@ Genre.create!(genre: 'hard-metal')
 Label.create!(label: 'Roadrunner Records')
 
 Cd.create!(artist_id: 1, label_id: 1, genre_id: 1, release: '2014-10-21',
-   price: 1916, stock: 10, cd_image_id: nil, single_album_name: 'The Gray Chapter')
+   price: 1916, stock: 10, cd_image_id: nil, single_album_name: 'The Gray Chapter',
+   cd_comment: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+     quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.")
 
 Song.create!(cd_id: 1, disc_num: 1, song_title: 'XIX')
 Song.create!(cd_id: 1, disc_num: 1, song_title: 'Sarcastrophe')
