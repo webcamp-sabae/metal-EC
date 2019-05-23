@@ -1,10 +1,9 @@
 class CartsController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
 
   def index
-    @carts = Cart.all.includes(:cd,:user)
+    @carts = Cart.all
     @postage = 500
-    @cds = Cd.all
   end
 
   def create
@@ -19,7 +18,7 @@ class CartsController < ApplicationController
 
   def update
       @cart = Cart.find(params[:id])
-    if params[:cart][:amount].to_i <= @cart.cd.stock
+    if params[:cart][:amount] <= @cart.cd.stock
       @cart.update(cart_params)
       flash[:notice] = "更新しました。"
       redirect_to carts_path
@@ -29,7 +28,8 @@ class CartsController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
+
     @cart = Cart.find(params[:id])
     if @cart.destroy
     flash[:notice] = "削除しました"

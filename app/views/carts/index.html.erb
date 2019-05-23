@@ -2,47 +2,51 @@
 
 <div class="container">
   <div class ="row">
-    <div class="col-8">
+    <div class="col-9">
     <h2  class="margin_top">ショッピングカート</h2>
       <table class="table">
       <thead>
         <tr>
-          <th>商品画像</th>
-          <th>商品名</th>
-          <th>アーティスト名</th>
-          <th>価格(税込)</th>
-          <th>数量</th>
-          <th> </th>
+          <th style="border:none">商品画像</th>
+          <th style="border:none">商品名</th>
+          <th style="border:none">アーティスト名</th>
+          <th style="border:none">価格(税込)</th>
+          <th style="border:none">購入数量</th>
+          <th style="border:none">小計</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <% num = 0 %>
-          <% @cds.each do |cd| %>
-          <th></th>
-          <td><%= cd.single_album_name %></td>
-          <td><%= cd.artist_id %></td>
-          <td><%= cd.price %>円</td>
-          <td><%= cd.stock %>個</td>
-          <td><%= link_to "削除", class: "btn btn-danger btn-sm margin_top", method: :delete %></td>
+          <% @carts.each do |cart| %>
+          <td></td>
+          <td><%= cart.cd.single_album_name %></td>
+          <td><%= cart.cd.artist.artist_name %></td>
+          <td><%= cart.cd.price %>円</td>
+　　　　　　<% form_for(@carts, :url => {:controller => :carts, :action => :update}) do |f| %>
+          <td><%= f.number_field :amount %>個</td>
+          <%= f.submit "変更", cart_path(cart.id) %>
+          <td><%= cart.cd.price * cart.amount %>円</td>
+          <% end %>
+          <td><%= link_to "削除", cart_path(cart), class: "btn btn-danger btn-sm margin_top", method: :delete %></td>
         </tr>
       </tbody>
       <tbody>
         <tr>
-          <th></th>
+          <td></td>
           <td></td>
           <td></td>
           <td>送料：<%= @postage %>円</td>
-          <td>小計(税込)：<%= num += cd.price * cd.stock + @postage %>円</td>
+          <% num += cart.cd.price * cart.amount %>
           <td></td>
+          <td>合計(税込)：<%= num + @postage %>円</td>
         </tr>
       </tbody>
     </table>
-      <%= link_to "カートを空にする", @cart, method: :delete, class: "btn btn-warning", data:{confirm: "本当に空にしますか？"} %>
       <%= link_to "お支払いへ進む", new_receipt_path, class: "btn btn-primary" %>
     </div>
      <% end %>
-    <div class ="col-4">
+    <div class ="col-3">
   </div>
  </div>
 </div>
