@@ -27,10 +27,12 @@
           <td><%= cd.single_album_name %></td>
           <td><%= cd.stock %></td>
           <td><%= link_to "詳細", admins_cd_path(cd.id), :class => "btn btn-outline-success btn-sm" %></td>
-          <td><%= link_to "編集", edit_admins_cd_path(cd.id), :class => "btn btn-outline-danger btn-sm" %></td>
+          <td><%= link_to "編集", edit_admins_cd_path(cd.id), :class => "btn btn-outline-info btn-sm" %></td>
+          <td><%= link_to "削除", admins_cd_path(cd.id), method: :delete, "data-confilm" => "本当に削除しますか？",
+           :class => "btn btn-outline-danger btn-sm" %></td>
         </tr>
         <% end %>
       </tbody>
     </table>
   </div>
-  <div>
+<div>
