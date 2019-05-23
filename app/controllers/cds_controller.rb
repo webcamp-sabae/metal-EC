@@ -3,5 +3,6 @@ class CdsController < ApplicationController
   end
 
   def index
+  	@cds = Cd.all
   end
 end
