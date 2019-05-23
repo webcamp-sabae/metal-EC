@@ -1,2 +1,141 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<div class="body" style="margin-top: 50px;">
+  <p class="notice"></p>
+
+  <div class="container">
+
+    <div class="col-md-10 offset-md-1 mt-5">
+      <h4 class="mb-3">アカウント情報の変更
+        <div class="float-right ml-4">
+          <%= link_to '退会', @user, method: :delete,
+          data: { confirm: '本当に削除しますか?' }, class: "btn btn-outline-danger" %>
+        </div>
+      </h4>
+
+      <%= form_with model: @user, class: 'needs-validation' do |f| %>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <%= f.label :familyname, '姓' %>
+          <%= f.text_field :familyname, class: "form-control"  %>
+          <div class="invalid-feedback">
+            Valid first name is required.
+          </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <%= f.label :firstname, '名' %>
+          <%= f.text_field :firstname, class: "form-control" %>
+          <div class="invalid-feedback">
+            Valid last name is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <%= f.label :kana_familyname, 'セイ' %>
+          <%= f.text_field :kana_familyname, class: "form-control" %>
+          <div class="invalid-feedback">
+            Valid first name is required.
+          </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <%= f.label :kana_firstname, 'メイ' %>
+          <%= f.text_field :kana_firstname, class: "form-control" %>
+          <div class="invalid-feedback">
+            Valid last name is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-2" >
+          <%= f.label :first_postal_code, '郵便番号' %>
+          <%= f.text_field :first_postal_code, class: "form-control" %>
+          <div class="invalid-feedback">
+            Please select a valid country.
+          </div>
+        </div>
+
+        <div class="col-md-2 ">
+          <%= f.label :last_postal_code %>
+          <%= f.text_field :last_postal_code, class: "form-control" %>
+          <div class="invalid-feedback">
+            Please select a valid country.
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row mb-3">
+
+        <div class="col-md-2">
+          <%= f.label :statu_address, '都道府県' %>
+          <%= f.text_field :statu_address, class: "form-control" %>
+          <div class="invalid-feedback">
+            Please enter your shipping address.
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <%= f.label :city_address, '住所' %>
+          <%= f.text_field :city_address, class: "form-control" %>
+          <div class="invalid-feedback">
+            Please enter your shipping address.
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <%= f.label :street_address, 'マンション名' %>
+          <%= f.text_field :street_address, class: "form-control" %>
+          <div class="invalid-feedback">
+            Please enter your shipping address.
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+
+        <div class="col-md-2">
+          <%= f.label :telephone_number1, '電話番号' %>
+          <%= f.telephone_field :telephone_number1, class: "form-control" %>
+          <div class="invalid-feedback">
+            Please enter a valid email address for shipping updates.
+          </div>
+        </div>
+
+        <div class="col-md-2">
+          <%= f.label :telephone_number2, '電話番号' %>
+          <%= f.telephone_field :telephone_number2, class: "form-control" %>
+          <div class="invalid-feedback">
+            Please enter a valid email address for shipping updates.
+          </div>
+        </div>
+
+        <div class="col-md-2">
+          <%= f.label :telephone_number3, '電話番号' %>
+          <%= f.telephone_field :telephone_number3, class: "form-control" %>
+          <div class="invalid-feedback">
+            Please enter a valid email address for shipping updates.
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <%= f.label :email, 'メールアドレス' %>
+          <%= f.email_field :email, class: "form-control" %>
+          <div class="invalid-feedback">
+            Please enter a valid email address for shipping updates.
+          </div>
+        </div>
+
+      </div>
+
+
+      <div id="user-edit-button" class="text-center mt-5">
+        <button type="button" id="user-edit-cancel" class="btn btn-danger" style= "width: 120px;">キャンセル</button>
+        <%= f.submit '更新', class: "btn btn-success", style: "width: 120px;", local: true %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
