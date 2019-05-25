@@ -83,3 +83,6 @@ gem 'bootstrap', '~> 4.3.1'
 gem "jquery-rails"
 
 gem "cocoon"
+
+gem 'faker'
+gem "faker-japanese"

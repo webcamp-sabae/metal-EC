@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 2019_05_23_035317) do
   create_table "purchases", force: :cascade do |t|
     t.integer "cd_id", null: false
     t.integer "receipt_id", null: false
-    t.integer "purches_price", null: false
+    t.integer "purchase_price", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "amount", null: false
