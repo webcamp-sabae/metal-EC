@@ -1,21 +1,41 @@
-<%= search_form_for @q do |f| %>
-  <%= f.label :amount_eq, "Name" %>
-  <%= f.search_field :amount_eq %>
-  <%= f.submit %>
-<% end %>
-
-
-
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-5 border-bottom">
   <h1 class="h2">売上一覧</h1>
   <div class="btn-toolbar mb-2 mb-md-0">
     <div class="btn-group mr-2">
-      <%#= link_to '本日の予定', admins_purchases_path(q: { date_eq: Date.today }), class: 'btn btn-primary' %>
 
-      <%#= link_to '本日', admins_purchases_path(term: { created_at_eq: Date.today }), class: 'btn btn-sm btn-outline-secondary' %>
-      <button type="button" class="btn btn-sm btn-outline-secondary">月間</button>
-      <button type="button" class="btn btn-sm btn-outline-secondary">週間</button>
-      <button type="button" class="btn btn-sm btn-outline-secondary">本日</button>
+      <%= link_to(
+        '本日', admins_purchases_path(
+          q: search_term(
+            Time.now.beginning_of_day,
+            Time.now.end_of_day
+        )
+      ),
+      class: 'btn btn-sm btn-outline-secondary'
+      )
+      %>
+
+      <%= link_to(
+        '週間', admins_purchases_path(
+          q: search_term(
+            Time.now.beginning_of_week,
+            Time.now.end_of_week
+        )
+      ),
+      class: 'btn btn-sm btn-outline-secondary'
+      )
+      %>
+
+      <%= link_to(
+        '月間', admins_purchases_path(
+          q:search_term(
+            Time.now.beginning_of_month,
+            Time.now.end_of_month
+        )
+      ),
+      class: 'btn btn-sm btn-outline-secondary'
+      )
+      %>
+
     </div>
   </div>
 </div>
@@ -27,7 +47,9 @@
         <h4 class="my-0 font-weight-normal">売上</h4>
       </div>
       <div class="card-body">
-        <h1 class="card-title pricing-card-title">$0 <small class="text-muted">/ mo</small></h1>
+        <h1 class="card-title pricing-card-title">
+        <%= @total_price %>
+        <small class="text-muted">円</small></h1>
         <ul class="list-unstyled mt-3 mb-4">
           <li>10 users included</li>
           <li>2 GB of storage</li>
@@ -92,8 +114,8 @@
           <tr>
             <td><%= purchase.receipt.shipping_familyname %></td>
             <td><%= purchase.receipt.status %></td>
-            <td><%= purchase.created_at %></td>
-            <td><%= purchase.receipt.updated_at unless purchase.receipt.status == '未発送' %></td>
+            <td><%= purchase.created_at.strftime('%Y年%m月%d日 %H:%M') %></td>
+            <td><%= purchase.receipt.updated_at.strftime('%Y年%m月%d日 %H:%M') unless purchase.receipt.status == '未発送' %></td>
             <td><%= purchase.cd.artist.artist_name %></td>
             <td><%= purchase.cd.single_album_name %></td>
             <td><%= purchase.purchase_price %>円</td>

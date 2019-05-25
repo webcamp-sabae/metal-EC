@@ -1,24 +1,14 @@
 class Admins::PurchasesController < Admins::AdminsController
-  def index
-    @q = Purchase.ransack(params[:q])
-    @purchases = @q.result
 
-    # @term = Purchase.ransack(params[:q])
-    # @purchases = @term.result
-    # @purchases = Purchase.all
+  def index
+    @term = Purchase.ransack(params[:q])
+    @purchases = @term.result
+    @total_price = total_price_by(@purchases)
   end
 
-end
+  private
 
-# def index
-#   unless params[:q].present?
-#     @q = User.ransack
-#   else
-#     @q = User.ransack(
-#       name_or_nationality_cont_any:
-#       params[:q][:name_or_nationality_cont_any].split(/[\s|　]/)
-#     )
-#   end
-#  @users = @q.result
-#  @q_sql = @q.result.to_sql
-# end
+    def total_price_by(purchases)
+      purchases.map(&:total_price).sum
+    end
+end
