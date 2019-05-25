@@ -7,7 +7,7 @@ class OthersaddressesController < ApplicationController
   end
 
   def create
-    @othersaddress = Othersaddress.new(othersaddress_params)
+     @othersaddress = Othersaddress.new(othersaddress_params)
     if @othersaddress.save
       flash[:notice] = "住所を登録しました"
       redirect_to new_receipt_path
