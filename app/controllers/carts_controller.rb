@@ -45,7 +45,7 @@ class CartsController < ApplicationController
   private
 
   def set_user
-      @user = User.find(params[:id])
+      @cart = Cart.find(params[:id])
     end
 
   def cart_params
