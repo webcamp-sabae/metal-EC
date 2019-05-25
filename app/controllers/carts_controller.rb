@@ -1,5 +1,5 @@
 class CartsController < ApplicationController
-  # before_action :authenticate_user!
+  before_action :authenticate_user!
 
   #カート一覧表示
   def index
