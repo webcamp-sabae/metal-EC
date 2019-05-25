@@ -1,19 +1,21 @@
 class CartsController < ApplicationController
   # before_action :authenticate_user!
+
   #カート一覧表示
   def index
-    @carts = Cart.all
-    # @carts = Cart.where(user_id: current_user.id)
+    @carts = Cart.where(user_id: current_user.id)
     @postage = 500
     @total_price = 0
   end
 
+ #カートに商品を追加する
   def create
    @cart = Cart.new(cart_params)
    if @cart.cd.stock.to_i > 0
    @cart.save
    flash[:notice] = "カートに商品が追加されました"
    redirect_to carts_path
+   end
   end
 
 #カート商品の数量変更
