@@ -10,7 +10,7 @@
       <!-- 商品一覧 -->
       <div class="row">
         <% @cds.each do |cd| %>
-        <div class="col-md-6">
+        <div class="col-md-5">
           <div class="img-fluid rounded mb-3 mb-md-0">
             <%= link_to cd_path(cd.id) do %>
             <%= attachment_image_tag cd.cd_image_id, :cd_image, size: "320x300", format: 'jpg', fallback: "no_image.jpg" %>
@@ -24,9 +24,9 @@
           <div class="right">
           <h3>
             <% if cd.stock == 0 then %>
-            在庫　　なし
+            <p>在庫　なし　</p>
           	<% else %>
-            在庫　　あり
+            <p>在庫　あり　</p>
             <% end %>
           </h3>
           <h3>
