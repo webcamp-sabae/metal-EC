@@ -1,8 +1,18 @@
+<%= search_form_for @q do |f| %>
+  <%= f.label :amount_eq, "Name" %>
+  <%= f.search_field :amount_eq %>
+  <%= f.submit %>
+<% end %>
+
+
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-5 border-bottom">
   <h1 class="h2">売上一覧</h1>
   <div class="btn-toolbar mb-2 mb-md-0">
     <div class="btn-group mr-2">
+      <%#= link_to '本日の予定', admins_purchases_path(q: { date_eq: Date.today }), class: 'btn btn-primary' %>
+
+      <%#= link_to '本日', admins_purchases_path(term: { created_at_eq: Date.today }), class: 'btn btn-sm btn-outline-secondary' %>
       <button type="button" class="btn btn-sm btn-outline-secondary">月間</button>
       <button type="button" class="btn btn-sm btn-outline-secondary">週間</button>
       <button type="button" class="btn btn-sm btn-outline-secondary">本日</button>
