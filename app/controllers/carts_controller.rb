@@ -1,9 +1,10 @@
 class CartsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_user, only: [:update, :destroy]
 
   #カート一覧表示
   def index
-    @carts = Cart.where(user_id: current_user.id)
+    @carts = current_user.carts
     @postage = 500
     @total_price = 0
   end
@@ -20,7 +21,6 @@ class CartsController < ApplicationController
 
 #カート商品の数量変更
   def update
-      @cart = Cart.find(params[:id])
     if params[:cart][:amount].to_i <= @cart.cd.stock
       @cart.update(cart_params)
       flash[:notice] = "購入数量を変更しました"
@@ -33,7 +33,6 @@ class CartsController < ApplicationController
 
  #カート商品の削除
   def destroy
-    @cart = Cart.find(params[:id])
     if @cart.destroy
     flash[:notice] = "削除しました"
     redirect_to carts_path
@@ -44,6 +43,10 @@ class CartsController < ApplicationController
   end
 
   private
+
+  def set_user
+      @user = User.find(params[:id])
+    end
 
   def cart_params
     params.require(:cart).permit(:cd_id, :user_id, :amount)

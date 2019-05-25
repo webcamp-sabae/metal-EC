@@ -2,7 +2,7 @@ class ReceiptsController < ApplicationController
 
 def new
   @receipt = Receipt.new
-  @othersaddress = Othersaddress.where(user_id: User.first.id)
+  @othersaddress = Othersaddress.where(user_id: current_user.id)
   @addresses = []
 
   @othersaddress.each do |value|
