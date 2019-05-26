@@ -8,6 +8,7 @@ class OthersaddressesController < ApplicationController
 
   def create
      @othersaddress = Othersaddress.new(othersaddress_params)
+       @othersaddress.user_id = current_user.id
     if @othersaddress.save
       flash[:notice] = "住所を登録しました"
       redirect_to new_receipt_path
@@ -25,6 +26,6 @@ class OthersaddressesController < ApplicationController
   private
 
   def othersaddress_params
-    params.require(:othersaddress).permit(:user_id,:familyname, :firstname, :kana_familyname, :kana_firstname, :first_postal_code, :last_postal_code, :statu_address, :city_address, :street_address, :telephone_number1, :telephone_number2, :telephone_number3)
+    params.require(:othersaddress).permit(:user_id, :familyname, :firstname, :kana_familyname, :kana_firstname, :first_postal_code, :last_postal_code, :statu_address, :city_address, :street_address, :telephone_number1, :telephone_number2, :telephone_number3)
   end
 end
