@@ -1,35 +1,59 @@
+
+
 <div class="container">
   <div class ="row">
-    <div class="col-8">
-    <h2>ショッピングカート</h2>
+    <h2  class="margin_top">ショッピングカート</h2>
+    <div class="col-lg-12">
       <table class="table">
       <thead>
         <tr>
-          <th>商品画像</th>
-          <th>商品名</th>
-          <th>アーティスト名</th>
-          <th>価格(円)</th>
-          <th>数量</th>
-          <th> </th>
+          <th width="150" style="border:none">商品画像</th>
+          <th width="200" style="border:none">商品名</th>
+          <th width="200" style="border:none">アーティスト名</th>
+          <th style="border:none">価格(税込)</th>
+          <th style="border:none">購入数量</th>
+          <th style="border:none">小計</th>
+          <th style="border:none"></th>
         </tr>
       </thead>
-
-
       <tbody>
         <tr>
-          <th></th>
-          <td>レモン</td>
-          <td>米津玄氏</td>
-          <td>１０００円</td>
-          <td>1個</td>
-          <td><%= link_to "削除", class: "btn btn-danger btn-sm", method: :delete %></td>
+              <% @carts.each do |cart| %>
+          <td><%= attachment_image_tag cart.cd.cd_image_id, :cd_image_id, :fill, 20, 20 %></td>
+          <td><%= cart.cd.single_album_name %></td>
+          <td><%= cart.cd.artist.artist_name %></td>
+          <td><%= cart.cd.price %>円</td>
+          <td><%= form_with model: cart, url: cart_path(cart) do |f| %>
+              <%= f.number_field :amount, min: 1, max: 99, step: 1 %>個
+              <%= f.submit "変更" %></td>
+              <% end %>
+          <td><%= cart.cd.price * cart.amount %>円</td>
+          <td><%= link_to "削除", cart_path(cart), class: "btn btn-outline-danger margin_top", method: :delete %></td>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <% @total_price += cart.cd.price * cart.amount %>
+          <td></td>
+          <td><ul style="list-style:none">
+              <li>送料：<%= @postage %>円</li>
+              <li> 合計(税込)：<%= @total_price + @postage %>円</li>
+            </ul>
+           <% end %>
+          </td>
         </tr>
       </tbody>
     </table>
-    <%= link_to "お支払いへ進む", new_receipt_path, class: "btn btn-primary" %>
     </div>
-    <div class ="col-4">
-
-  </div>
  </div>
+<div class="row">
+    <div class="col-lg-8"></div>
+     <div class="col-lg-4"><%= link_to "買い物を続ける", cds_path, class: "btn btn-outline-dark" %>
+                          <%= link_to "お支払いへ進む", new_receipt_path, class: "btn btn-primary" %>
+     </div>
+  </div>
 </div>

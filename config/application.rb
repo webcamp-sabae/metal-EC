@@ -26,6 +26,10 @@ module MetalEc
       g.skip_routes true
     end
 
+    # 表示時のタイムゾーンをJSTに設定
+    config.time_zone = 'Tokyo'
+    # DB保存時のタイムゾーンをJSTに設定
+    config.active_record.default_timezone = :local
 
   end
 

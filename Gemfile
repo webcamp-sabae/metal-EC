@@ -46,7 +46,6 @@ group :development, :test do
 
   gem 'better_errors'
   gem 'binding_of_caller'
-
 end
 
 group :development do
@@ -83,4 +82,9 @@ gem 'bootstrap', '~> 4.3.1'
 
 gem "jquery-rails"
 
+gem "ransack"
+
 gem "cocoon"
+
+gem 'faker'
+gem "faker-japanese"
