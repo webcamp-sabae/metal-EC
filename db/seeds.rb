@@ -100,21 +100,3 @@ end
     end
   end
 end
-
-# # 別の届け先を登録して商品を購入
-#
-# Othersaddress.create!(
-#   user_id: 1,
-#   familyname: '目立留',
-#   firstname: 'の母',
-#   kana_familyname: 'メタル',
-#   kana_firstname: 'ノハハ',
-#   telephone_number1: '090',
-#   telephone_number2: '0002',
-#   telephone_number3: '0330',
-#   first_postal_code: '464',
-#   last_postal_code: '2772',
-#   statu_address: '東京都',
-#   city_address: '新宿区',
-#   street_address: '新宿15-6-1'
-# )
