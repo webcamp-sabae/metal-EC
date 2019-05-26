@@ -85,3 +85,6 @@ gem "jquery-rails"
 gem "ransack"
 
 gem "cocoon"
+
+gem 'faker'
+gem "faker-japanese"
