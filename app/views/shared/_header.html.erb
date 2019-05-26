@@ -1,0 +1,35 @@
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark">
+          <%= image_tag "logo.png", size: "270x100", alt: "metal-EC" %>
+
+      <ul class="navbar-nav ml-auto">
+            <% if user_signed_in? %>
+        <li class="nav-item">
+          <%= link_to "TOP", :root, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "カート", :carts, class: "nav-link" %>
+        </li>
+        <div class="dropdown">
+          <button type="button" class="btn btn-secondary dropdown-toggle btn-md" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ログイン中</button>
+          <div class="dropdown-menu btn-sm" aria-labelledby="dropdownMenu">
+            <button class="dropdown-item" type="button"><%= link_to '会員情報', class: "nav-link" %></a>
+            <button class="dropdown-item" type="button"><%= link_to '購入履歴', class: "nav-link" %></a>
+          </div>
+         </div>
+         <li class="nav-item">
+        <%= link_to 'ログアウト', :destroy_user_session, method: :delete, class: "nav-link" %>
+      </li>
+      <% else %>
+      <li class="nav-item">
+          <%= link_to "TOP", :root, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+        <%= link_to 'ログイン', :new_user_session, class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to '会員登録', :new_user_registration, class: "nav-link" %>
+      </li>
+      </ul>
+         <% end %>
+    </nav>
