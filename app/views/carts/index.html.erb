@@ -19,7 +19,7 @@
       <tbody>
         <tr>
               <% @carts.each do |cart| %>
-          <td><%= attachment_image_tag cart.cd.cd_image_id, :cd_image_id, :fill, 20, 20 %></td>
+          <td><%= attachment_image_tag cart.cd, :cd_image, :fill, 20, 20 %></td>
           <td><%= cart.cd.single_album_name %></td>
           <td><%= cart.cd.artist.artist_name %></td>
           <td><%= cart.cd.price %>円</td>

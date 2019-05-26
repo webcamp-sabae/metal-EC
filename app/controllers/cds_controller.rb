@@ -1,9 +1,11 @@
 class CdsController < ApplicationController
   def show
   	@cd = Cd.find(params[:id])
-  	@song = Song.find(params[:id])
+    @artist = Artist.find(params[:id])
+    @songs = @cd.songs
+    @cart = current_user.carts.new
 
-  	@stock_array = []
+    # stockの数量を反映させる
   	@cd.stock.times do |quantity|
   		if quantity < 15
   			 @stock_array << quantity + 1
@@ -11,6 +13,8 @@ class CdsController < ApplicationController
   				break
   			end
   		end
+    @stock_array = []
+    # ===============
   end
 
   def index
