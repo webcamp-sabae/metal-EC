@@ -4,5 +4,4 @@ class Admins::AdminsController < ApplicationController
   def index
     @receipts = Receipt.status_select('未発送')
   end
-
 end
