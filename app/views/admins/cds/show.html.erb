@@ -1,6 +1,9 @@
 <p></p>
 <div class="container">
 	<h1 class="col-sm-12">CD情報</h1>
+	<div class="text-right">
+		<%= link_to "編集", edit_admins_cd_path(@cd.id), :class => "btn btn-outline-danger btn-sm" %>
+	</div>
 	<div class="card border-dark">
 		<div class="card-body">
 			<div class="row">
@@ -34,6 +37,32 @@
 					    <td><%= @cd.stock %></td>
 					  </tr>
 					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<h1 class="col-sm-12 mt-4">収録曲</h1>
+	<div class="card border-dark mb-5">
+		<div class="card-body">
+					<table class="table table-sprited">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>ディスクNo.</th>
+                  <th>曲名</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <% @songs.each do |song| %>
+                  <td></td>
+                  <td><%= song.disc_num %></td>
+                  <td><%= song.song_title %></td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
 				</div>
 			</div>
 		</div>
