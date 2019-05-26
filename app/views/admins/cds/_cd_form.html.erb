@@ -9,6 +9,7 @@
           <h4>ジャケット画像を登録</h4>
           <%= f.attachment_field :cd_image, class: "image", id: "file" %>
           <div id="img_field" onClick="$('#file').click()" ></div>
+
         </div>
       </div>
       <div class="col-7">
@@ -34,7 +35,7 @@
     </div>
     <div class="row">
       <div class="col-12">
-      <div class="field">
+        <div class="field">
           <%= f.label :artist_id, "【必須】アーティスト" %>
           <%= f.collection_select :artist_id, Artist.all, :id, :artist_name, {}, {class: "form-control"} %>
         </div>
@@ -46,6 +47,11 @@
           <%= f.label :genre_id, "【必須】ジャンル" %>
           <%= f.collection_select :genre_id, Genre.all, :id, :genre, {}, {class: "form-control"} %>
         </div>
+         <div class="field">
+          <%= f.label :cd_comment, "おすすめコメント" %>
+          <%= f.text_area :cd_comment, class: "form-control" %>
+        </div>
+
 
       <h3 class="my-4">曲名を追加</h3>
       <div id='songs'>
