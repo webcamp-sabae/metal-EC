@@ -36,12 +36,34 @@
       <li>11. <%= @song.song_title %></li>
       <li>12. <%= @song.song_title %></li>
   </ul>
-  <div>
-      <h3 class="my-3">登録情報</h3>
-      <p>発売日（<%= @cd.release %>）</p>
-      <p>ディスク枚数：<%= @song.disc_num %>枚</p>
+  <div class="row">
+  	<div class="col-12">
+  		<h3 class="mb-3">登録情報</h3>
+      <span>発売日（<%= @cd.release %>）</span>
+      <span>ディスク枚数：<%= @song.disc_num %>枚</span>
   </div>
-    </div>
+</div>
+	<div class="row">
+  	<div class="mt-4 mr-2 text-right">
+          <h3>
+            <% if @cd.stock == 0 then %>
+            <p>在庫　なし　</p>
+          	<% else %>
+            <p>在庫　あり　</p>
+            <% end %>
+          </h3>
+          <h3>
+          	価格(税込) ¥ <%= (@cd.price * 1.08).round(-1) %>
+          </h3>
+          <%= form_for @cd do |f| %>
+          <h4>
+          	<%= f.label :"数量" %>
+          <%= f.select :stock, @stock_array%>
+          </h4>
+          <%= f.submit "カートに入れる", class: "btn btn-primary "%>
+          <% end %>
+  </div>
+</div>
 
   </div>
 </div>
