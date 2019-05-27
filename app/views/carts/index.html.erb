@@ -1,5 +1,3 @@
-
-
 <div class="container">
   <div class ="row">
     <h2  class="margin_top">ショッピングカート</h2>
@@ -19,7 +17,7 @@
               <% @carts.each do |cart| %>
       <tbody>
         <tr>
-          <td><%= attachment_image_tag cart.cd, :cd_image, :fill, 20, 20 %></td>
+          <td><%= attachment_image_tag cart.cd, :cd_image, size: "60x60", fallback: "no_image.jpg" %></td>
           <td><%= cart.cd.single_album_name %></td>
           <td><%= cart.cd.artist.artist_name %></td>
           <td><%= cart.cd.price %>円</td>
@@ -39,11 +37,12 @@
           <td></td>
           <% @total_price += cart.cd.price * cart.amount %>
           <td></td>
+                     <% end %>
           <td><ul style="list-style:none">
               <li>送料：<%= @postage %>円</li>
               <li> 合計(税込)：<%= @total_price + @postage %>円</li>
             </ul>
-           <% end %>
+
           </td>
         </tr>
       </tbody>
