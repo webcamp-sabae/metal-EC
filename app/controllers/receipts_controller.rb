@@ -4,7 +4,7 @@ class ReceiptsController < ApplicationController
      @receipt = Receipt.new
      @othersaddress = Othersaddress.all
     # @receipt.purchases.build
-     @oth = current_user.othersaddresses.page(params[:page]).reverse_order.per(1)
+     @addresspage = current_user.othersaddresses.page(params[:page]).reverse_order.per(1)
      @current_user = current_user
 
      @per_subtotal = []

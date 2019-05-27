@@ -17,7 +17,7 @@
     </p>
    </div>
    <div class="card card-body" style="width: 30rem;">
-       <% @oth.each do |address| %>
+       <% @addresspage.each do |address| %>
       <h5 class="card-title"><%= radio_button :shipping_address, address.id, address %> 他の住所の選択
         <%= link_to "お届け先の追加", new_othersaddress_path, class: "btn btn-primary" %></h5>
        <p class="card-text">
@@ -27,7 +27,7 @@
        <p><%= "郵便番号" %>:<%= address.postal_code %></p>
        <p><%="住所" %>:<%=address.address %></p>
        <% end %>
-      <%= paginate @oth, class: "paginate" %>
+      <%= paginate @addresspage, class: "paginate" %>
    </div>
  </div>
 
