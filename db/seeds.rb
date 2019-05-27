@@ -16,12 +16,12 @@ Label.create!(label: 'ソニー・ミュージック・エンタテインメン�
 Label.create!(label: 'ユニバーサル・ミュージック・グループ')
 
 # 商品を作成
-5.times do
+30.times do
   artist = Artist.create!(
     artist_name: Faker::Music.band
   )
 
-  3.times do |i|
+  10.times do |i|
     date1 = Date.new(1990,1,1)
     cd = Cd.create!(
       artist_id: artist.id,
