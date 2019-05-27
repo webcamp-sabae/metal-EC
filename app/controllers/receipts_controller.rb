@@ -18,9 +18,9 @@ class ReceiptsController < ApplicationController
 
 
 def create
-  @receipt = Receipt.new(receipt_params)
-  if params['shipping_address'].keys[0] != "current_user"
-    @address = Othersaddress.find(params['shipping_address'].keys[0])
+    @receipt = Receipt.new(receipt_params)
+  if params[:ship][:shipping_address].to_i != 0
+    @address = Othersaddress.find(params[:ship][:shipping_address])
     @receipt.shipping_familyname = @address.familyname
     @receipt.shipping_firstname = @address.firstname
     @receipt.shipping_kana_familyname = @address.kana_familyname
@@ -36,14 +36,18 @@ def create
     @receipt.shipping_postal = current_user.postal_code
     @receipt.shipping_address = current_user.address
     @receipt.shipping_telephone_number = current_user.telephone_number
-
-
   end
+    cart = Cart.where(user_id: current_user)
+    cart.destroy
+
    # @receipt = Receipt.new(receipt_params)
    @receipt.save
     logger.debug @receipt.errors.to_yaml
    redirect_to thanks_path
+
+
 end
+
 
 
   private
