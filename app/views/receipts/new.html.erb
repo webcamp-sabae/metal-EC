@@ -1,48 +1,83 @@
 <div class="container">
- <div class="row">
-<h1>注文内容の確認・変更</h1>
- </div>
-  <p>注文ボタンを押していただくことで注文を確定することができます</p>
-<h4>配送先住所</h4>
 
-
-
-<%= form_for(@receipt) do |f| %>
-
-<%= link_to "お届け先の追加", new_othersaddress_path, class: "btn btn-primary" %>
-
+  <h1>注文内容の確認・変更</h1>
   <div class="row">
-    <div class="col-5">
-     <p>配送方法: まとめて配送する</p>
-        <table class="table" >
-         <thead >
-            <tr >
-             <th scope="lg-5">支払方法</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-             <td style="border:none;"><%= f.radio_button :payment, "1" %>銀行振込</td>
-             </tr>
-             <tr>
-              <td style="border:none;"><%= f.radio_button :payment, "2" %>クレジットカード</td>
-              </tr>
-              <tr>
-               <td style="border:none;"><%= f.radio_button :payment, "3" %>代金引換え</td>
-             </tr>
-            </tr>
-            </tbody>
-            </table>
-        </div>
-        <div class="col-7">
-          <h4>ご注文金額: <%= @carts %></h4>
-        </div>
+    <div class="col-sm-6">
+        <%= form_for(@receipt) do |f| %>
+     <div class="card card-body" style="width: 30rem;">
+  <h5 class="card-title"><%= radio_button :shipping_address, "current_user", current_user.id, {:checked => false} %>
+   登録先の住所に送る </h5>
+  <p class="card-text">
+   <p> <%= "氏名" %>:<%= current_user.kana_familyname %><%= current_user.kana_firstname %></p>
+   <p><%= "カナ(氏名)" %>:<%= current_user.kana_familyname %><%= current_user.kana_firstname %></p>
+   <p><%= "TEL" %>:<%= current_user.telephone_number %></p>
+    <p><%= "郵便番号" %>:<%= current_user.address %></p>
+    <p><%="住所" %>:<%= current_user.address %></p>
+     <%= f.hidden_field :user_id, value:current_user.id %>
+    </p>
    </div>
+   <div class="card card-body" style="width: 30rem;">
+       <% @oth.each do |address| %>
+      <h5 class="card-title"><%= radio_button :shipping_address, address.id, address %> 他の住所の選択
+        <%= link_to "お届け先の追加", new_othersaddress_path, class: "btn btn-primary" %></h5>
+       <p class="card-text">
+       <p> <%= "氏名" %>:<%= address.familyname %><%= address.firstname %></p>
+       <p><%= "カナ(氏名)" %>:<%= address.kana_familyname %><%= address.kana_firstname %></p>
+       <p><%= "TEL" %>:<%=address.telephone_number %></p>
+       <p><%= "郵便番号" %>:<%= address.postal_code %></p>
+       <p><%="住所" %>:<%=address.address %></p>
+       <% end %>
+      <%= paginate @oth, class: "paginate" %>
+   </div>
+ </div>
 
+    <div class="col-sm-6">
+        <p>支払方法</p>
+        <table class="table table-bordered">
+          <tr>
+            <th class="table-active">支払い方法</th>
+            <td>
+              <label><%= f.radio_button :payment, :銀行振込, checked: "checked" %>  銀行振込</label>
+              <label><%= f.radio_button :payment, :クレジットカード %>  クレジットカード</label>
+              <label><%= f.radio_button :payment, :代金引換 %>  代金引換</label>
 
-<%= f.submit "購入する", class: "btn btn-success" %>
-<%= link_to "カートに戻る", carts_path, class: "btn btn-secondary" %>
+            </td>
+          </tr>
+          <tr>
+            <th class="table-active">配送方法</th>
+            <td>まとめて配送</td>
+            <%= f.hidden_field :status, { value: :未発送 } %>
+          </tr>
+          <tr>
+          </tr>
+          <tr>
+            <th class="table-active">商品の小計</th>
+            <td>¥<%= @subtotal %></td>
+          </tr>
+          <tr>
+            <th class="table-active">配送料・手数料</th>
+            <td>¥<%= @postage %></td>
+            <%= f.hidden_field :postage, { value: 500 } %>
+          </tr>
+          <tr>
+            <th class="table-active">注文合計</th>
+            <td>¥<%= @totalprice %> </td>
+          </tr>
+        </table>
+        <!-- 未完成　メソッドとして成立してない気がする
+          each文で全てのpurchaseにreceipt_idを付与したい。。
+              <% current_user.carts.each do |purchase| %>
+                <%= f.fields_for :purchase, purchase do |p| %>
+                  <%= p.hidden_field :cd_id, { value: purchase.cd.id } %>
+                  <%= p.hidden_field :purchase_price, { value: 500 } %>
+                <% end %>
+              <% end %>
+            -->
 
-<% end %>
+        <div class="text-center">
+          <%= f.submit "注文を確定する", class: "btn btn-outline-primary btn-lg" %>
+    <% end %>
+    </div>
+  </div>
 </div>
 

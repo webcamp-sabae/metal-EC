@@ -61,8 +61,13 @@ class Admins::CdsController < Admins::AdminsController
 
 		def cd_params
 			params.require(:cd).permit(:artist_id, :label_id, :genre_id, :release,
+<<<<<<< HEAD
+			 :price, :stock, :single_album_name, :cd_image)
+			 # , songs_attributes: [:disc_num, :song_title])
+=======
 			 :price, :stock, :single_album_name, :cd_image,
 			 songs_attributes: [:id, :disc_num, :song_title, :_destroy])
+>>>>>>> dev
 		end
 
 end
