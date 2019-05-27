@@ -1,18 +1,19 @@
 class ReceiptsController < ApplicationController
 
   def new
-  @receipt = Receipt.new
-  @othersaddress = Othersaddress.all
-  # @receipt.purchases.build
-   @oth = current_user.othersaddresses.page(params[:page]).reverse_order.per(3)
-   @current_user = User.find(1)
-   @per_subtotal = []
-   @current_user.carts.each do |cart|
-      @per_subtotal << ( cart.cd.price * cart.amount )
-    end
-    @postage = 500
-    @subtotal = @per_subtotal.sum
-    @totalprice = @subtotal + @postage
+     @receipt = Receipt.new
+     @othersaddress = Othersaddress.all
+    # @receipt.purchases.build
+     @oth = current_user.othersaddresses.page(params[:page]).reverse_order.per(1)
+     @current_user = current_user
+
+     @per_subtotal = []
+     @current_user.carts.each do |cart|
+     @per_subtotal << ( cart.cd.price * cart.amount )
+      end
+     @postage = 500
+     @subtotal = @per_subtotal.sum
+     @totalprice = @subtotal + @postage
   end
 
 

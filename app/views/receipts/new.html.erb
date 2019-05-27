@@ -3,143 +3,33 @@
   <h1>注文内容の確認・変更</h1>
   <div class="row">
     <div class="col-sm-6">
-
-
-        </div>
-      </div>
-
-
-      <div class="card my-2">
-      <div class="card-body">
-        <h5 class="card-title">
-          <%= radio_button :type, 2, :checked %>別の住所に送る<%= link_to "お届け先の追加", new_othersaddress_path, class: "btn btn-primary" %>
-        </h5>
-              <% @oth.each do |address| %>
-        <div class="row">
-                 <%= form_for(@receipt) do |f| %>
-                <div class="col-sm-6 mb-1">
-                  <%= f.label :shipping_kana_familyname, "カナ(姓)" %>
-                  <%= f.text_field :shipping_kana_familyname ,value: address.kana_familyname,
-                    class: "form-control" %>
-                </div>
-                <div class="col-sm-6 mb-1">
-                  <%= f.label :shipping_kana_firstname, "カナ(名)" %>
-                  <%= f.text_field :shipping_kana_firstname ,value: address.kana_firstname, class: "form-control" %>
-                </div>
-                <div class="col-sm-6 mb-1">
-                  <%= f.label :shipping_familyname, "姓" %>
-                  <%= f.text_field :shipping_familyname ,value: address.familyname, class: "form-control" %>
-                </div>
-                <div class="col-sm-6 mb-1">
-                  <%= f.label :shipping_firstname, "名" %>
-                  <%= f.text_field :shipping_firstname ,value: address.firstname, class: "form-control" %>
-                </div>
-                <div class="col-sm-12 mb-1">
-                  <%= f.label :shipping_telephone_number, "TEL" %>
-                  <%= f.text_field :shipping_telephone_number, value: address.telephone_number,
-                    class: "form-control" %>
-                </div>
-                <div class="col-sm-3 mb-1">
-                  <%= f.label :shipping_postal, "郵便番号" %>
-                  <%= f.text_field :shipping_postal, value: address.postal_code, class: "form-control" %>
-                </div>
-                <div class="col-sm-12 mb-1">
-                  <%= f.label :shipping_address, "住所" %>
-                  <%= f.text_field :shipping_address, value: address.address, class: "form-control" %>
-                </div>
-                  <%= f.hidden_field :user_id, value:current_user.id %>
-              </div>
-              <% end %>
-      <% end %>
-           <%= paginate @oth, class: "paginate" %>
-      </div>
-    </div>
-
-    </div>
-
-
-  <%= form_for(@receipt) do |f| %>
-
-      <h4>配送先住所</h4>
-      <div class="card my-2">
-        <div class="card-body">
-          <h5 class="card-title"><%= radio_button :shipping_address, "current_user", current_user.id, {:checked => false} %> 自分の住所を選択</h5>
-           <%= current_user.address %>
-
-
-
-          <% @oth.each do |address| %>
-          <h5 class="card-title"><%= radio_button :shipping_address, address.id, address, {:checked => false} %> 他の住所の選択</h5>
-              <div class="row">
-                <div class="col-sm-2 mb-1">
-                  <%= "カナ(姓)" %>
-                  <%= address.kana_familyname%>
-                </div>
-                <div class="col-sm-2 mb-1">
-                  <%= "カナ(名)" %>
-                  <%= address.kana_firstname %>
-                </div>
-                <div class="col-sm-2 mb-1">
-                  <%= "姓" %>
-                  <%=address.familyname %>
-                </div>
-                <div class="col-sm-2 mb-1">
-                  <%= "名" %>
-                  <%= address.firstname %>
-                </div>
-                <div class="col-sm-2 mb-1">
-                  <%="TEL" %>
-                  <%=address.telephone_number %>
-                </div>
-                <div class="col-sm-2 mb-1">
-                  <%="郵便番号" %>
-                  <%=address.postal_code %>
-                </div>
-                <div class="col-sm-2 mb-1">
-                  <%="住所" %>
-                  <%=address.address %>
-                </div>
-                  <%= f.hidden_field :user_id, value:current_user.id %>
-              </div>
-
-              <!--<div class="row">
-                <div class="col-sm-6 mb-1">
-                  <%= f.label :shipping_kana_familyname, "カナ(姓)" %>
-                  <%= f.text_field :shipping_kana_familyname ,value: current_user.kana_familyname,
-                   readonly: true, class: "form-control" %>
-                </div>
-                <div class="col-sm-6 mb-1">
-                  <%= f.label :shipping_kana_firstname, "カナ(名)" %>
-                  <%= f.text_field :shipping_kana_firstname ,value: current_user.kana_firstname, readonly: true, class: "form-control" %>
-                </div>
-                <div class="col-sm-6 mb-1">
-                  <%= f.label :shipping_familyname, "姓" %>
-                  <%= f.text_field :shipping_familyname ,value: current_user.familyname, readonly: true, class: "form-control" %>
-                </div>
-                <div class="col-sm-6 mb-1">
-                  <%= f.label :shipping_firstname, "名" %>
-                  <%= f.text_field :shipping_firstname ,value: current_user.firstname, readonly: true, class: "form-control" %>
-                </div>
-                <div class="col-sm-12 mb-1">
-                  <%= f.label :shipping_telephone_number, "TEL" %>
-                  <%= f.text_field :shipping_telephone_number, value: current_user.telephone_number,
-                   readonly: true, class: "form-control" %>
-                </div>
-                <div class="col-sm-3 mb-1">
-                  <%= f.label :shipping_postal, "郵便番号" %>
-                  <%= f.text_field :shipping_postal, value: current_user.postal_code, readonly: true, class: "form-control" %>
-                </div>
-                <div class="col-sm-12 mb-1">
-                  <%= f.label :shipping_address, "住所" %>
-                  <%= f.text_field :shipping_address, value: current_user.address, readonly: true, class: "form-control" %>
-                </div>
-                  <%= f.hidden_field :user_id, value:current_user.id %>
-              </div>-->
-              <% end %>
-
-
-
-
+        <%= form_for(@receipt) do |f| %>
+     <div class="card card-body" style="width: 30rem;">
+  <h5 class="card-title"><%= radio_button :shipping_address, "current_user", current_user.id, {:checked => false} %>
+   登録先の住所に送る </h5>
+  <p class="card-text">
+   <p> <%= "氏名" %>:<%= current_user.kana_familyname %><%= current_user.kana_firstname %></p>
+   <p><%= "カナ(氏名)" %>:<%= current_user.kana_familyname %><%= current_user.kana_firstname %></p>
+   <p><%= "TEL" %>:<%= current_user.telephone_number %></p>
+    <p><%= "郵便番号" %>:<%= current_user.address %></p>
+    <p><%="住所" %>:<%= current_user.address %></p>
+     <%= f.hidden_field :user_id, value:current_user.id %>
+    </p>
+   </div>
+   <div class="card card-body" style="width: 30rem;">
+       <% @oth.each do |address| %>
+      <h5 class="card-title"><%= radio_button :shipping_address, address.id, address %> 他の住所の選択
+        <%= link_to "お届け先の追加", new_othersaddress_path, class: "btn btn-primary" %></h5>
+       <p class="card-text">
+       <p> <%= "氏名" %>:<%= address.familyname %><%= address.firstname %></p>
+       <p><%= "カナ(氏名)" %>:<%= address.kana_familyname %><%= address.kana_firstname %></p>
+       <p><%= "TEL" %>:<%=address.telephone_number %></p>
+       <p><%= "郵便番号" %>:<%= address.postal_code %></p>
+       <p><%="住所" %>:<%=address.address %></p>
+       <% end %>
+      <%= paginate @oth, class: "paginate" %>
+   </div>
+ </div>
 
     <div class="col-sm-6">
         <p>支払方法</p>
