@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MetalEc</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag    'admins/custom', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body class="text-center" data-__gyazo-extension-added-paste-support="true">
+  
+  <%= form_for resource, as: resource_name, url: session_path(resource_name), html: { class: "form-signin" } do |f| %>
+  <img class="mb-4" src="/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+  <h1 class="h3 mb-3 font-weight-normal">管理者用ログイン</h1>
+  <%= f.label :email, class: "sr-only" %><br />
+  <%= f.email_field :email, class: "form-control", placeholder: "Email address", autofocus: true, autocomplete: "email" %>
+  <%= f.label :password, class: "sr-only" %><br />
+  <%= f.password_field :password, class: "form-control", placeholder: "Password",  autocomplete: "current-password" %>
+  <div class="checkbox mb-3">
+    <% if devise_mapping.rememberable? %>
+    <div class="field">
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me %>
+    </div>
+    <% end %>
+  </div>
+  <%= f.submit "Log in", class: "btn btn-lg btn-primary btn-block" %>
+  <p class="mt-5 mb-3 text-muted">© 2017-2019</p>
+  <% end %>
+  <%= render "admins/shared/links" %>
+
+</body>
+</html>

@@ -1,4 +1,8 @@
 
+Admin.create!(
+  email: 'admin@example.com',
+  password: 'adminadmin'
+)
 
 Genre.create!(genre: 'ニュー・メタル')
 Genre.create!(genre: 'ブラックメタル')
