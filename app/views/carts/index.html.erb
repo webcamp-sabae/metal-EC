@@ -16,9 +16,9 @@
           <th style="border:none"></th>
         </tr>
       </thead>
+              <% @carts.each do |cart| %>
       <tbody>
         <tr>
-              <% @carts.each do |cart| %>
           <td><%= attachment_image_tag cart.cd, :cd_image, :fill, 20, 20 %></td>
           <td><%= cart.cd.single_album_name %></td>
           <td><%= cart.cd.artist.artist_name %></td>

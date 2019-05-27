@@ -6,14 +6,14 @@ class CdsController < ApplicationController
     @cart = current_user.carts.new
 
     # stockの数量を反映させる
-  	@cd.stock.times do |quantity|
-  		if quantity < 15
-  			 @stock_array << quantity + 1
-  			else
-  				break
-  			end
-  		end
     @stock_array = []
+  	@cd.stock.times do |amount|
+  		if amount < 15
+  			@stock_array << amount + 1
+  		else
+  			break
+  		end
+  	end
     # ===============
   end
 

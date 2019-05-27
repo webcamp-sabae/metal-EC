@@ -1,59 +1,62 @@
 <div class="container">
   <div class="container-fluid">
-  <div class="row">
+    <div class="row">
 
-    <div class="col-md-6">
-      <div class="img-fluid" style="width: 320px; height: 300px; margin: auto;">
-        <%= attachment_image_tag @cd, :cd_image, size: "320x300", format: 'jpg', fallback: "no_image.jpg" %>
-   		</div>
-   		<div class="text-center">
-          <h1 class="my-3"><%= @cd.single_album_name %></h1>
-          <p class="my-2"><%= @cd.artist.artist_name %></p>
-          <p class="my-2">ジャンル　<%= @cd.genre.genre %></p>
-          <p class="my-2">レーベル名　<%= @cd.label.label %></p>
-      </div>
-    </div>
-    <div class="col-md-6">
-        <h3 class="my-4">収録内容</h3>
-            <div class="row">
-      	       <ul class="col-5" style="list-style-type: none;">
-                  <% @songs.each do |song|%>
-                  <li>
-                  <%= song.disc_num %>.
-                  <%= song.song_title %>
-                  </li>
-                  <% end %>
-  	           </ul>
-            </div>
-        <div class="row">
-  	       <div class="col-12">
-  		        <h3 class="mb-3">登録情報</h3>
-              <span>発売日（<%= @cd.release %>）</span>
-            </div>
+      <div class="col-md-6">
+        <div class="img-fluid" style="width: 320px; height: 300px; margin: auto;">
+          <%= attachment_image_tag @cd, :cd_image, size: "320x300", format: 'jpg', fallback: "no_image.jpg" %>
+     		</div>
+     		<div class="text-center">
+            <h1 class="my-3"><%= @cd.single_album_name %></h1>
+            <p class="my-2"><%= @cd.artist.artist_name %></p>
+            <p class="my-2">ジャンル　<%= @cd.genre.genre %></p>
+            <p class="my-2">レーベル名　<%= @cd.label.label %></p>
         </div>
-	       <div class="row">
-  	       <div class="mt-4 mr-2 ">
-            <h3>
-              <% if @cd.stock == 0 then %>
-              <p>在庫　なし　</p>
-          	 <% else %>
-              <p>在庫　あり　</p>
-              <% end %>
-              <p>価格(税込) ¥ <%= (@cd.price * 1.08).round(-1) %></p>
-            </h3>
-              <%= form_for @cart,{url: carts_path} do |f| %>
-            <h4>
+      </div>
+
+      <div class="col-md-6">
+        <h3 class="my-4">収録内容</h3>
+          <table class="table table-condenced">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Disc</th>
+                <th>曲名</th>
+              </tr>
+            </thead>
+            <tbdoy>
+            <% @songs.each_with_index do |song, i|%>
+              <tr>
+                <td><%= i +1 %></td>
+                <td><%= song.disc_num %></td>
+                <td><%= song.song_title %></td>
+              </tr>
+            </tbdoy>
+            <% end %>
+          </table>
+
+          <h3 class="mb-3">登録情報</h3>
+            <span>発売日（<%= @cd.release.strftime("%Y年%m月%d日")  %>）</span>
+
+          <div class="mt-4 mr-2 ">
+
+            <% if @cd.stock == 0 then %>
+              <h3>在庫　なし</h3>
+            <% else %>
+              <h3>在庫　あり　</h3>
+            <% end %>
+            <p>価格(税込) ¥ <%= (@cd.price * 1.08).round(-1) %></p>
+
+            <%= form_for @cart,{url: carts_path} do |f| %>
               <%= f.label :"数量" %>
               <%= f.select :amount, @stock_array %>
               <%= f.hidden_field :user_id, :value => current_user.id %>
               <%= f.hidden_field :cd_id, :value => @cd.id %>
               <%= f.submit "カートに入れる", class: "btn btn-primary" %>
-            </h4>
-              <% end %>
-            </div>
+            <% end %>
         </div>
+      </div>
     </div>
-  </div>
   </div>
 </div>
   <!-- /.row -->
