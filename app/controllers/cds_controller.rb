@@ -1,7 +1,7 @@
 class CdsController < ApplicationController
   def show
   	@cd = Cd.find(params[:id])
-    @artist = Artist.find(params[:id])
+    @artist = @cd.artist.id
     @songs = @cd.songs
     @cart = current_user.carts.new
 

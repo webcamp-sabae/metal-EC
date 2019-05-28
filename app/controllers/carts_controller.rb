@@ -1,4 +1,4 @@
-class CartsController < ApplicationController
+ class CartsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user, only: [:update, :destroy]
 
@@ -13,9 +13,9 @@ class CartsController < ApplicationController
   def create
    @cart = Cart.new(cart_params)
    if @cart.cd.stock.to_i > 0
-   @cart.save
-   flash[:notice] = "カートに商品が追加されました"
-   redirect_to carts_path
+     @cart.save
+     flash[:notice] = "カートに商品が追加されました"
+     redirect_to carts_path
    end
   end
 
