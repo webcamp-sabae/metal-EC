@@ -1,7 +1,7 @@
 <div class="container">
       <!-- search form -->
       <%= search_form_for @search do |f| %>
-        <div class="form-group">
+        <div class="form-group" style="width: 300px;">
           <%= f.label :single_album_name_cont_any, "CDタイトル" %>
           <%= f.text_field :single_album_name_cont_any, class: "form-control",
           data: { autocomplete_source: cd_names_path } %>
