@@ -2,9 +2,6 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:update, :show, :edit, :destroy]
 
   def show
-    # before_actionで@userを呼びしているのでコメントアウトします。
-    # コードの重複がへります。
-  	# @user = User.find(params[:id])
   end
 
   def create
@@ -17,20 +14,13 @@ class UsersController < ApplicationController
   end
 
   def edit
-    # before_actionで@userを呼びしているのでコメントアウトします。
-    # コードの重複がへります。
-  	# @user = User.find(params[:id])
   end
 
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.update(user_params)
+      redirect_to @user, notice: 'User was successfully updated.'
+    else
+      render :edit
     end
   end
 
