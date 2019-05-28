@@ -1,42 +1,36 @@
-<!-- Page Content -->
-    <div class="container">
-
+<div class="container">
       <!-- search form -->
       <h1 class="cd-pege-search">
         <span>検索select</span>
         <span>検索form</span>
       </h1>
-
       <!-- 商品一覧 -->
-      <div class="row">
         <% @cds.each do |cd| %>
-        <div class="col-md-5">
-          <div class="img-fluid rounded mb-3 mb-md-0" style="width: 320px; height: 300px; margin: auto;">
-            <%#= link_to cd_path(cd.id) do %>
-            <%= link_to cd do %>
-            <%= attachment_image_tag cd.cd_image_id, :cd_image, size: "320x300", format: 'jpg', fallback: "no_image.jpg" %>
-            <% end %>
+        <div class="row border-bottom border-dack mb-5">
+          <div class="col-md-5 pb-5">
+            <div class="img-fluid rounded mb-3 mb-md-0" style="width: 320px; height: 300px; margin: auto;">
+              <%#= link_to cd_path(cd.id) do %>
+              <%= link_to cd do %>
+              <%= attachment_image_tag cd, :cd_image, size: "320x300", format: 'jpg', fallback: "no_image.jpg" %>
+              <% end %>
+            </div>
           </div>
+        <div class="col-md-6 pb-5">
+            <h1><%= cd.single_album_name %></h1>
+            <p><%= simple_format(cd.cd_comment) %></p>
+            <!-- simple_format(cd.comment)で改行含めたコメントを表示させる -->
+              <div class="mt-4 mr-2 text-right">
+                <h3>
+                  <% if cd.stock == 0 then %>
+                  <p>在庫　なし　</p>
+          	       <% else %>
+                  <p>在庫　あり　</p>
+                  <% end %>
+                </h3>
+                <h3>
+          	      価格(税込) ¥ <%= (cd.price * 1.08).round(-1) %>
+                </h3>
+              </div>
         </div>
-        <div class="col-md-6">
-          <h1><%= cd.single_album_name %></h1>
-          <p><%= simple_format(cd.cd_comment) %></p>
-          <!-- simple_format(cd.comment)で改行含めたコメントを表示させる -->
-          <div class="mt-4 mr-2 text-right">
-          <h3>
-            <% if cd.stock == 0 then %>
-            <p>在庫　なし　</p>
-          	<% else %>
-            <p>在庫　あり　</p>
-            <% end %>
-          </h3>
-          <h3>
-          	価格(税込) ¥ <%= (cd.price * 1.08).round(-1) %>
-          </h3>
-      </div>
-    </div>
-    <% end %>
-      </div>
-      <!-- /.row -->
-
-      <hr>
+        </div>
+      <% end %>
