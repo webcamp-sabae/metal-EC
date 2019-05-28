@@ -1,40 +1,41 @@
 <div class="body" style="margin-top: 50px;">
-<p class="notice"></p>
-<div class="container">
-    <div class="row">
-<div class="col-md-8 col-md-offset-2">
-	<table class="table table-bordered">
-		<h1>会員情報</h1>
-		<tbody>
-			<tr>
-				<th class="text-center">名前</th>
-				<td class="text-center"><%= @user.familyname %> <%= @user.firstname %></td>
-			</tr>
-			<tr>
-				<th class="text-center">フリガナ</th>
-				<td class="text-center"><%= @user.kana_familyname %> <%= @user.kana_firstname %></td>
-			</tr>
-			<tr>
-				<th class="text-center">郵便番号</th>
-				<td class="text-center"><%= @user.first_postal_code %> - <%= @user.last_postal_code %></td>
-			</tr>
-			<tr>
-				<th class="text-center">住所</th>
-				<td class="text-center"><%= @user.address %></td>
-			</tr>
-			<tr>
-				<th class="text-center">電話番号</th>
-				<td class="text-center"><%= @user.telephone_number1 %> - <%= @user.telephone_number2 %> - <%= @user.telephone_number3 %></td>
-			</tr>
-			<tr>
-				<th class="text-center">メールアドレス</th>
-				<td class="text-center"><%= @user.email %></td>
-			</tr>
-		</tbody>
-	</table>
-	<a class="btn btn-default pull-right" href="#" >購入履歴一覧</a>
-	<a class="btn btn-default pull-right" href="#" >編集</a>
-</div>
-</div>
-</div>
+	<div class="container">
+    	<div class="row">
+			<div class="col-md-8 offset-2">
+			<table class="table table-bordered">
+				<h4 class="">会員情報</h4>
+				<tbody class="text-center">
+					<tr>
+						<th class="table-active">名前</th>
+						<td ><%= @user.familyname %> <%= @user.firstname %></td>
+					</tr>
+					<tr>
+						<th class="table-active">フリガナ</th>
+						<td ><%= @user.kana_familyname %> <%= @user.kana_firstname %></td>
+					</tr>
+					<tr>
+						<th class="table-active">郵便番号</th>
+						<td ><%= @user.first_postal_code %> - <%= @user.last_postal_code %></td>
+					</tr>
+					<tr>
+						<th class="table-active">住所</th>
+						<td ><%= @user.address %></td>
+					</tr>
+					<tr>
+						<th class="table-active">電話番号</th>
+						<td ><%= @user.telephone_number1 %> - <%= @user.telephone_number2 %> - <%= @user.telephone_number3 %></td>
+					</tr>
+					<tr>
+						<th class="table-active">メールアドレス</th>
+						<td ><%= @user.email %></td>
+					</tr>
+				</tbody>
+			</table>
+				<div class="float-right">
+					<span><%= link_to '編集', edit_user_path, :class => "btn btn-success"%></span>
+					<span><%= link_to '購入履歴一覧', purchases_path(current_user.id), :class => "btn btn-primary" %></span>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
