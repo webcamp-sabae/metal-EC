@@ -28,7 +28,7 @@ def create
     @receipt.shipping_postal = @address.postal_code
     @receipt.shipping_address = @address.address
     @receipt.shipping_telephone_number = @address.telephone_number
-  else
+  elsif params[:ship][:shipping_address].to_i == 0
     @receipt.shipping_familyname = current_user.familyname
     @receipt.shipping_firstname = current_user.firstname
     @receipt.shipping_kana_familyname = current_user.kana_familyname
@@ -36,27 +36,39 @@ def create
     @receipt.shipping_postal = current_user.postal_code
     @receipt.shipping_address = current_user.address
     @receipt.shipping_telephone_number = current_user.telephone_number
+  else
+    render "new"
   end
-    cart = Cart.where(user_id: current_user)
-    cart.destroy
-
-   # @receipt = Receipt.new(receipt_params)
    @receipt.save
-    logger.debug @receipt.errors.to_yaml
-   redirect_to thanks_path
 
+   carts = current_user.carts
 
+   carts.each do |cart|
+     Purchase.create(
+      receipt_id: @receipt.id,
+      cd_id: cart.cd_id,
+      amount: cart.amount,
+      purchase_price: cart.cd.price
+    )
+    end
+
+  carts.destroy_all
+
+  redirect_to thanks_path
 end
 
 
 
   private
+
+
     def receipt_params
-    params.require(:receipt).permit(
-          :user_id,
-          :payment,
-          :status,
-          :postage)
+      params.require(:receipt).permit(
+           :user_id,
+           :payment,
+           :status,
+           :postage
+           )
     end
 
 end

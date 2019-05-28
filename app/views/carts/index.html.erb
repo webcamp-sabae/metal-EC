@@ -42,7 +42,6 @@
               <li>送料：<%= @postage %>円</li>
               <li> 合計(税込)：<%= @total_price + @postage %>円</li>
             </ul>
-
           </td>
         </tr>
       </tbody>
@@ -52,7 +51,7 @@
 <div class="row">
     <div class="col-lg-8"></div>
      <div class="col-lg-4"><%= link_to "買い物を続ける", cds_path, class: "btn btn-outline-dark" %>
-                          <%= link_to "お支払いへ進む", new_receipt_path, class: "btn btn-primary" %>
+         <%= link_to "お支払いへ進む", new_receipt_path, class: "btn btn-primary", data: {"turbolinks" => false} %>
      </div>
   </div>
 </div>

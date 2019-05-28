@@ -11,7 +11,7 @@
           <%= link_to "カート", :carts, class: "nav-link" %>
         </li>
         <div class="dropdown">
-          <button type="button" class="btn btn-secondary dropdown-toggle btn-md" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ログイン中</button>
+          <button type="button" class="btn btn-secondary dropdown-toggle btn-md" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= current_user.firstname %>さんログイン中</button>
           <div class="dropdown-menu btn-sm" aria-labelledby="dropdownMenu">
             <button class="dropdown-item" type="button"><%= link_to '会員情報', user_path(current_user.id), class: "nav-link text-body" %></button>
             <button class="dropdown-item" type="button"><%= link_to '購入履歴', purchases_path(current_user.id), class: "nav-link text-body" %></button>
