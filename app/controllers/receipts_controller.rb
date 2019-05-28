@@ -28,7 +28,7 @@ def create
     @receipt.shipping_postal = @address.postal_code
     @receipt.shipping_address = @address.address
     @receipt.shipping_telephone_number = @address.telephone_number
-  elsif params[:ship][:shipping_address].to_i == 0
+  else params[:ship][:shipping_address].to_i == 0
     @receipt.shipping_familyname = current_user.familyname
     @receipt.shipping_firstname = current_user.firstname
     @receipt.shipping_kana_familyname = current_user.kana_familyname
@@ -36,8 +36,6 @@ def create
     @receipt.shipping_postal = current_user.postal_code
     @receipt.shipping_address = current_user.address
     @receipt.shipping_telephone_number = current_user.telephone_number
-  else
-    render "new"
   end
    @receipt.save
 
