@@ -6,7 +6,8 @@
       <%= search_form_for @search do |f| %>
         <div class="form-group">
           <%= f.label :single_album_name_cont_any, "CDタイトル" %>
-          <%= f.text_field :single_album_name_cont_any, class: "form-control" %>
+          <%= f.text_field :single_album_name_cont_any, class: "form-control",
+          data: { autocomplete_source: ["aaa", "bbb", "ccc" ]} %>
         </div>
         <div class="actions"><%= f.submit "Search" %></div>
       <% end %>

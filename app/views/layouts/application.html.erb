@@ -4,12 +4,14 @@
     <title>MetalEcサイト</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 <body>
   <header class="">
-<!------ Include the above in your HEAD tag ---------->
+<!-- Include the above in your HEAD tag -->
 
 <header>
   <!--  Remove dark nav  -->
@@ -22,7 +24,7 @@
       <div class="menu" id="open-navbar1">
         <ul class="list">
           <li><a href="#">Home</a></li>
-          
+
           <li><a href="http://dev.gilan-co.com/">About us</a></li>
           <li><%= link_to  do %>
             <span>マイページ</span>
