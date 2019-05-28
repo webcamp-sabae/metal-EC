@@ -18,9 +18,10 @@ class ReceiptsController < ApplicationController
 
 
 def create
-  @receipt = Receipt.new(receipt_params)
-  if params['shipping_address'].keys[0] != "current_user"
-    @address = Othersaddress.find(params['shipping_address'].keys[0])
+    @receipt = Receipt.new(receipt_params)
+  #Viewから送られてきたidでユーザー登録住所かその他の住所であるかを判別してます
+  if params[:ship][:shipping_address].to_i != 0
+    @address = Othersaddress.find(params[:ship][:shipping_address])
     @receipt.shipping_familyname = @address.familyname
     @receipt.shipping_firstname = @address.firstname
     @receipt.shipping_kana_familyname = @address.kana_familyname
@@ -36,23 +37,37 @@ def create
     @receipt.shipping_postal = current_user.postal_code
     @receipt.shipping_address = current_user.address
     @receipt.shipping_telephone_number = current_user.telephone_number
-
-
   end
-   # @receipt = Receipt.new(receipt_params)
    @receipt.save
-    logger.debug @receipt.errors.to_yaml
-   redirect_to thanks_path
+
+   carts = current_user.carts
+
+   carts.each do |cart|
+     Purchase.create(
+      receipt_id: @receipt.id,
+      cd_id: cart.cd_id,
+      amount: cart.amount,
+      purchase_price: cart.cd.price
+    )
+    end
+
+  carts.destroy_all
+
+  redirect_to thanks_path
 end
 
 
+
   private
+
+
     def receipt_params
-    params.require(:receipt).permit(
-          :user_id,
-          :payment,
-          :status,
-          :postage)
+      params.require(:receipt).permit(
+           :user_id,
+           :payment,
+           :status,
+           :postage
+           )
     end
 
 end

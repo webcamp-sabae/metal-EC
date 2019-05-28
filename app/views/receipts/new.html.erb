@@ -5,8 +5,9 @@
     <div class="col-sm-6">
         <%= form_for(@receipt) do |f| %>
      <div class="card card-body" style="width: 30rem;">
-  <h5 class="card-title"><%= radio_button :shipping_address, "current_user", current_user.id, {:checked => false} %>
-   登録先の住所に送る </h5>
+  <h5 class="card-title">
+    <%= radio_button :ship, :shipping_address, 0, {:checked => true} %>
+   登録先の住所に送る<%= link_to "お届け先の追加", new_othersaddress_path, class: "btn btn-primary" %> </h5>
   <p class="card-text">
    <p> <%= "氏名" %>:<%= current_user.kana_familyname %><%= current_user.kana_firstname %></p>
    <p><%= "カナ(氏名)" %>:<%= current_user.kana_familyname %><%= current_user.kana_firstname %></p>
@@ -17,9 +18,9 @@
     </p>
    </div>
    <div class="card card-body" style="width: 30rem;">
-       <% @addresspage.each do |address| %>
-      <h5 class="card-title"><%= radio_button :shipping_address, address.id, address %> 他の住所の選択
-        <%= link_to "お届け先の追加", new_othersaddress_path, class: "btn btn-primary" %></h5>
+    <p>その他の住所一覧</p>
+     <% @addresspage.each do |address| %>
+    <h5 class="card-title"><%= radio_button :ship, :shipping_address, address.id %>この住所に送る</h5>
        <p class="card-text">
        <p> <%= "氏名" %>:<%= address.familyname %><%= address.firstname %></p>
        <p><%= "カナ(氏名)" %>:<%= address.kana_familyname %><%= address.kana_firstname %></p>
@@ -32,7 +33,6 @@
  </div>
 
     <div class="col-sm-6">
-        <p>支払方法</p>
         <table class="table table-bordered">
           <tr>
             <th class="table-active">支払い方法</th>
@@ -61,19 +61,9 @@
           </tr>
           <tr>
             <th class="table-active">注文合計</th>
-            <td>¥<%= @totalprice %> </td>
+            <td>¥<%= f.label :purchase_price, { value: @totalprice } %> </td>
           </tr>
         </table>
-        <!-- 未完成　メソッドとして成立してない気がする
-          each文で全てのpurchaseにreceipt_idを付与したい。。
-              <% current_user.carts.each do |purchase| %>
-                <%= f.fields_for :purchase, purchase do |p| %>
-                  <%= p.hidden_field :cd_id, { value: purchase.cd.id } %>
-                  <%= p.hidden_field :purchase_price, { value: 500 } %>
-                <% end %>
-              <% end %>
-            -->
-
         <div class="text-center">
           <%= f.submit "注文を確定する", class: "btn btn-outline-primary btn-lg" %>
     <% end %>
