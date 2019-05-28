@@ -1,6 +1,6 @@
 <div class="container">
   <div class="container-fluid">
-    <div class="row">
+    <div class="row cart-mgn">
 
       <div class="col-md-6">
         <div class="img-fluid" style="width: 320px; height: 300px; margin: auto;">
@@ -59,4 +59,21 @@
     </div>
   </div>
 </div>
+<div class="mb-5"></div>
+<footer class="footer mt-auto py-3 fixed-bottom bg-warning">
+  <div class="container text-center">
+    <span class="text-muted">
+      曲名:<%= @cd.single_album_name %> |
+       アーティスト名:<%= @cd.artist.artist_name %> |
+        <%= form_for@cart,{url: carts_path} do |f| %>
+          <%= f.label :"数量" %>
+          <%= f.select :amount, @stock_array %>
+          <%= f.hidden_field :user_id, :value => current_user.id %>
+          <%= f.hidden_field :cd_id, :value => @cd.id %>
+          <%= f.submit "カートに入れる", class: "btn btn-primary" %>
+        <% end %>
+      </span>
+  </div>
+</footer>
+
   <!-- /.row -->
