@@ -7,7 +7,7 @@
         <div class="form-group">
           <%= f.label :single_album_name_cont_any, "CDタイトル" %>
           <%= f.text_field :single_album_name_cont_any, class: "form-control",
-          data: { autocomplete_source: Cd.order(:single_album_name).map(&:single_album_name)} %>
+          data: { autocomplete_source: cd_names_path } %>
         </div>
         <div class="actions"><%= f.submit "Search" %></div>
       <% end %>
