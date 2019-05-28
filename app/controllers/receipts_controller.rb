@@ -19,6 +19,7 @@ class ReceiptsController < ApplicationController
 
 def create
     @receipt = Receipt.new(receipt_params)
+  #送られてきたidでユーザー登録住所かその他の住所であるかを判別してます
   if params[:ship][:shipping_address].to_i != 0
     @address = Othersaddress.find(params[:ship][:shipping_address])
     @receipt.shipping_familyname = @address.familyname
