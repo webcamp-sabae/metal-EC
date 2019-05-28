@@ -1,0 +1,2 @@
+module CdNamesHelper
+end
