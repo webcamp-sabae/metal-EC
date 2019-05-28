@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   # devise_for :users
 
   resources :cds, only: [:index, :show]
+  resources :cd_names, only: [:index]
   resources :users, only: [:show, :edit, :update, :destroy]
   resources :carts, only: [:index, :create, :update, :destroy]
   resources :receipts, only: [:new, :create]

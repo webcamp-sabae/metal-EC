@@ -23,12 +23,12 @@
                 <h3>
                   <% if cd.stock == 0 then %>
                   <p>在庫　なし　</p>
-          	       <% else %>
+                   <% else %>
                   <p>在庫　あり　</p>
                   <% end %>
                 </h3>
                 <h3>
-          	      価格(税込) ¥ <%= (cd.price * 1.08).round(-1) %>
+                  価格(税込) ¥ <%= (cd.price * 1.08).round(-1) %>
                 </h3>
               </div>
         </div>
