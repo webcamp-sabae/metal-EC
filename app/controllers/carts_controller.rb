@@ -12,10 +12,13 @@
  #カートに商品を追加する
   def create
    @cart = Cart.new(cart_params)
-   if @cart.cd.stock.to_i > 0
-     @cart.save
-     flash[:notice] = "カートに商品が追加されました"
-     redirect_to carts_path
+   if  @cart.cd.stock.to_i > 0
+      @cart.save
+      flash[:notice] = "カートに商品が追加されました"
+      redirect_to carts_path
+   else
+    flash[:notice] = "品切れのため商品を追加できません。"
+    render "cds/show"
    end
   end
 
