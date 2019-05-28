@@ -23,3 +23,4 @@
 
 //= require jquery_ujs
 //= require cocoon
+
