@@ -1,9 +1,14 @@
 <div class="container">
       <!-- search form -->
-      <h1 class="cd-pege-search">
-        <span>検索select</span>
-        <span>検索form</span>
-      </h1>
+      <%= search_form_for @search do |f| %>
+        <div class="form-group">
+          <%= f.label :single_album_name_cont_any, "CDタイトル" %>
+          <%= f.text_field :single_album_name_cont_any, class: "form-control",
+          data: { autocomplete_source: cd_names_path } %>
+        </div>
+        <div class="actions"><%= f.submit "Search" %></div>
+      <% end %>
+
       <!-- 商品一覧 -->
         <% @cds.each do |cd| %>
         <div class="row border-bottom border-dack mb-5">
