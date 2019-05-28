@@ -50,7 +50,6 @@
             <%= form_for @cart,{url: carts_path} do |f| %>
               <%= f.label :"数量" %>
               <%= f.select :amount, @stock_array %>
-              <%= f.hidden_field :user_id, :value => current_user.id %>
               <%= f.hidden_field :cd_id, :value => @cd.id %>
               <%= f.submit "カートに入れる", class: "btn btn-primary" %>
             <% end %>
@@ -68,7 +67,6 @@
         <%= form_for@cart,{url: carts_path} do |f| %>
           <%= f.label :"数量" %>
           <%= f.select :amount, @stock_array %>
-          <%= f.hidden_field :user_id, :value => current_user.id %>
           <%= f.hidden_field :cd_id, :value => @cd.id %>
           <%= f.submit "カートに入れる", class: "btn btn-primary" %>
         <% end %>

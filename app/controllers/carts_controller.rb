@@ -9,18 +9,22 @@
     @total_price = 0
   end
 
- #カートに商品を追加する
-  def create
-   @cart = Cart.new(cart_params)
-   if  @cart.cd.stock.to_i > 0
-      @cart.save
-      flash[:notice] = "カートに商品が追加されました"
-      redirect_to carts_path
-   else
-    flash[:notice] = "品切れのため商品を追加できません。"
-    render "cds/show"
+   #カートに商品を追加する
+   def create
+     cd = Cd.find(params[:cart][:cd_id].to_i)
+     if cd.stock > 0
+       Cart.create(
+         amount: cart_params[:amount],
+         user_id: current_user.id,
+         cd_id: cd.id
+       )
+       flash[:notice] = "カートに商品が追加されました"
+       redirect_to carts_path
+     else
+       flash[:notice] = "品切れのため商品を追加できません。"
+       redirect_to cd
+     end
    end
-  end
 
 #カート商品の数量変更
   def update
