@@ -1,5 +1,5 @@
 class Receipt < ApplicationRecord
-  has_many :purchases
+  has_many :purchases, dependent: :destroy
   accepts_nested_attributes_for :purchases
   belongs_to :user
 
