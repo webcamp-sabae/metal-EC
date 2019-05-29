@@ -1,9 +1,21 @@
 class CdsController < ApplicationController
+  def index
+    unless params[:q].present?
+      @search = Cd.ransack
+    else
+      @search = Cd.ransack(
+        single_album_name_cont_any:
+        params[:q][:single_album_name_cont_any].split(/[\s|　]/)
+      )
+    end
+    @cds = @search.result
+  end
+
   def show
   	@cd = Cd.find(params[:id])
     @artist = @cd.artist.id
     @songs = @cd.songs
-    @cart = current_user.carts.new
+    @cart = Cart.new
 
     # stockの数量を反映させる
     @stock_array = []
@@ -15,18 +27,6 @@ class CdsController < ApplicationController
   		end
   	end
     # ===============
-  end
 
-  def index
-    unless params[:q].present?
-      @search = Cd.ransack
-    else
-      @search = Cd.ransack(
-        single_album_name_cont_any:
-        params[:q][:single_album_name_cont_any].split(/[\s|　]/)
-      )
-    end
-    @cds = @search.result
-    @q_sql = @search.result.to_sql
   end
 end
