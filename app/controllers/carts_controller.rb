@@ -11,6 +11,7 @@
 
   #カートに商品を追加する
   def create
+    byebug
     cart = Cart.find_by(
       user_id: current_user.id,
       cd_id: cart_params[:cd_id]
@@ -19,20 +20,25 @@
     if cart.present?
       # update
       # 既存のカートレコードに数量を追加
-      cart.amount += cart_params[:amount].to_i
+      cart.increment(:amount, cart_params[:amount].to_i)
     else
       # create
       # 新規でレコードを作成
-      cart = Cart.new(cart_params)
+      cart = Cart.new(
+        user_id: current_user.id,
+        cd_id: cart_params[:cd_id],
+        amount: cart_params[:amount]
+      )
     end
 
-    if cart.cd.stock.to_i > 0
+    cd = Cd.find(params[:cart][:cd_id].to_i)
+    if cd.stock > 0
       cart.save
       flash[:notice] = "カートに商品が追加されました"
       redirect_to carts_path
     else
       flash[:notice] = "品切れのため商品を追加できません。"
-      render "cds/show"
+      redirect_to cd
     end
   end
 
