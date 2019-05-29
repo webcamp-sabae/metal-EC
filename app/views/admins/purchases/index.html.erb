@@ -123,8 +123,8 @@
             <td><%= purchase.receipt.status %></td>
             <td><%= purchase.created_at.strftime('%Y年%m月%d日 %H:%M') %></td>
             <td><%= purchase.receipt.updated_at.strftime('%Y年%m月%d日 %H:%M') unless purchase.receipt.status == '未発送' %></td>
-            <td><%= purchase.cd.artist.artist_name %></td>
-            <td><%= purchase.cd.single_album_name %></td>
+            <td><%= purchase.cd.present? ? purchase.cd.artist.artist_name : '不明なアーティスト' %></td>
+            <td><%= purchase.cd.present? ? purchase.cd.single_album_name : '不明なタイトル' %></td>
             <td><%= purchase.purchase_price %>円</td>
             <td><%= purchase.amount %>枚</td>
             <td><%= purchase.receipt.payment %></td>
