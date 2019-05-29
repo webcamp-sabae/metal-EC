@@ -9,11 +9,11 @@
     <%= radio_button :ship, :shipping_address, 0, {:checked => true} %>
    登録先の住所に送る<%= link_to "お届け先の追加", new_othersaddress_path, class: "btn btn-primary" %> </h5>
   <p class="card-text">
-   <p><b><%= "氏名" %> :</b> <%= current_user.kana_familyname %><%= current_user.kana_firstname %></p>
+   <p><b><%= "氏名" %> :</b> <%= current_user.familyname %><%= current_user.firstname %></p>
    <p><b><%= "カナ(氏名)" %>  :</b>  <%= current_user.kana_familyname %><%= current_user.kana_firstname %></p>
    <p><b><%= "TEL" %>  :</b>  <%= current_user.telephone_number %></p>
     <p><b><%= "郵便番号" %>  :</b> <%= current_user.postal_code %></p>
-    <p><b><%="住所" %>  :</b> <%= current_user.address %></p>
+    <p><b><%= "住所" %>  :</b> <%= current_user.address %></p>
      <%= f.hidden_field :user_id, value:current_user.id %>
     </p>
    </div>
@@ -26,7 +26,7 @@
        <p><b><%= "カナ(氏名)" %>  :</b>  <%= address.kana_familyname %><%= address.kana_firstname %></p>
        <p><b><%= "TEL" %>  :</b>  <%= address.telephone_number %></p>
        <p><b><%= "郵便番号" %>  :</b>  <%= address.postal_code %></p>
-       <p><b><%="住所" %>  :</b>  <%= address.address %></p>
+       <p><b><%= "住所" %>  :</b>  <%= address.address %></p>
        <% end %>
       <%= paginate @addresspage, class: "paginate" %>
    </div>
