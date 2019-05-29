@@ -3,7 +3,6 @@ class ReceiptsController < ApplicationController
   def new
      @receipt = Receipt.new
      @othersaddress = Othersaddress.all
-    # @receipt.purchases.build
      @addresspage = current_user.othersaddresses.page(params[:page]).reverse_order.per(1)
      @current_user = current_user
 
@@ -19,7 +18,7 @@ class ReceiptsController < ApplicationController
 
 def create
     @receipt = Receipt.new(receipt_params)
-  #Viewから送られてきたidでユーザー登録住所かその他の住所であるかを判別してます
+  #Viewで登録済み住所を選択した場合current_user.id: 0が送られ、その他の住所ではaddress.id > 0が送られるのでの条件分岐により振り分けられる
   if params[:ship][:shipping_address].to_i != 0
     @address = Othersaddress.find(params[:ship][:shipping_address])
     @receipt.shipping_familyname = @address.familyname
