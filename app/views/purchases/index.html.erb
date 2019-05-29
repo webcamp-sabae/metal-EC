@@ -1,33 +1,33 @@
 <div class="container">
   <h1 class="h2">購入履歴一覧</h1>
-
   <div class="table table-responsive">
-    <% @purchase_group.each do |key, purchases| %>
-      <table style="table-layout:fixed;width:100%;" class="table table-bordered">
-        <colgroup>
-          <col style="width:10%;">
-          <col style="width:15%;">
-          <col style="width:20%;">
-          <col style="width:10%;">
-          <col style="width:7%;">
-          <col style="width:10%;">
-          <col style="width:28%;">
-        </colgroup>
-        <thead class="thead-dark">
-          <tr>
-            <th></th>
-            <th>アーティスト名</th>
-            <th>CD名</th>
-            <th>金額</th>
-            <th>数量</th>
-            <th>支払方法</th>
-            <th>届先住所</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% purchases.each do |purchase| %>
+      <% @receipts.each do |receipt| %>
+    <table style="table-layout:fixed;width:100%;" class="table table-bordered">
+      <colgroup>
+        <col style="width:15%;">
+        <col style="width:25%;">
+        <col style="width:10%;">
+        <col style="width:10%;">
+        <col style="width:15%;">
+        <col style="width:25%;">
+      </colgroup>
+      <thead class="thead-dark">
+        <tr>
+          <th>アーティスト名</th>
+          <th>CD名</th>
+          <th>金額</th>
+          <th>数量</th>
+          <th>支払方法</th>
+          <th>届先住所</th>
+        </tr>
+      </thead>
+      <tbody>
+        <div class="btn btn-secondary mb-1">
+          購入日：<%= receipt.created_at.strftime('%Y/%m/%d') %> | 
+          注文番号：<%= receipt.id %>
+        </div>
+          <% receipt.purchases.each do |purchase| %>
             <tr>
-              <td><%= purchase.cd.created_at.strftime('%Y/%m/%d') %></td>
               <td><%= purchase.cd.artist.artist_name %></td>
               <td><%= purchase.cd.single_album_name %></td>
               <td><%= purchase.purchase_price %>円</td>
@@ -36,9 +36,8 @@
               <td><%= purchase.receipt.shipping_address %></td>
             </tr>
           <% end %>
-        </tbody>
-      </table>
-    <% end %>
+        <% end %>
+      </tbody>
+    </table>
   </div>
-
 </div>
