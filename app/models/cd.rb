@@ -4,7 +4,7 @@ class Cd < ApplicationRecord
 	belongs_to :genre
 	belongs_to :label
 
-	has_many :songs, inverse_of: :cd
+	has_many :songs, inverse_of: :cd, dependent: :destroy
   accepts_nested_attributes_for :songs, reject_if: :all_blank, allow_destroy: true
 
 	attachment :cd_image
