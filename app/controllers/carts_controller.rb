@@ -11,7 +11,6 @@
 
   #カートに商品を追加する
   def create
-    byebug
     cart = Cart.find_by(
       user_id: current_user.id,
       cd_id: cart_params[:cd_id]
