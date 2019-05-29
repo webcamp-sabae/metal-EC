@@ -1,0 +1,53 @@
+<div class="container">
+  <h1 class="h2">購入履歴一覧</h1>
+  <div class="table table-responsive">
+      <% @receipts.each do |receipt| %>
+    <table style="table-layout:fixed;width:100%;" class="table table-bordered">
+      <colgroup>
+        <col style="width:15%;">
+        <col style="width:25%;">
+        <col style="width:10%;">
+        <col style="width:10%;">
+        <col style="width:15%;">
+        <col style="width:25%;">
+      </colgroup>
+      <thead class="thead-dark">
+        <tr>
+          <th>アーティスト名</th>
+          <th>CD名</th>
+          <th>金額</th>
+          <th>数量</th>
+          <th>支払方法</th>
+          <th>届先住所</th>
+        </tr>
+      </thead>
+      <tbody>
+        <div class="btn btn-secondary mb-1">
+          購入日：<%= receipt.created_at.strftime('%Y/%m/%d') %>
+        </div>
+          <div class="float-right">対応状況：
+            <% if receipt.status == "未発送" %>
+              <div class="btn btn-danger">
+                <%= receipt.status %>
+              </div>
+            <% else %>
+              <div class="btn btn-primary">
+               <%= receipt.status %>
+              </div>
+            <% end %>
+          </div>
+         <% receipt.purchases.each do |purchase| %>
+            <tr>
+              <td><%= purchase.cd.artist.artist_name %></td>
+              <td><%= purchase.cd.single_album_name %></td>
+              <td><%= purchase.purchase_price %>円</td>
+              <td><%= purchase.amount %>枚</td>
+              <td><%= purchase.receipt.payment %></td>
+              <td><%= purchase.receipt.shipping_address %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

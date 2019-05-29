@@ -1,0 +1,73 @@
+<div class="container">
+
+  <h1>注文内容の確認・変更</h1>
+  <div class="row">
+    <div class="col-sm-6">
+        <%= form_for(@receipt) do |f| %>
+     <div class="card card-body" style="width: 30rem;">
+  <h5 class="card-title">
+    <%= radio_button :ship, :shipping_address, 0, {:checked => true} %>
+   登録先の住所に送る<%= link_to "お届け先の追加", new_othersaddress_path, class: "btn btn-primary" %> </h5>
+  <p class="card-text">
+   <p><b><%= "氏名" %> :</b> <%= current_user.familyname %>  <%= current_user.firstname %></p>
+   <p><b><%= "カナ(氏名)" %>  :</b>  <%= current_user.kana_familyname %>  <%= current_user.kana_firstname %> </p>
+   <p><b><%= "TEL" %>  :</b>  <%= current_user.telephone_number %> </p>
+    <p><b><%= "郵便番号" %>  :</b> <%= current_user.postal_code %> </p>
+    <p><b><%= "住所" %>  :</b> <%= current_user.address %> </p>
+     <%= f.hidden_field :user_id, value:current_user.id %>
+    </p>
+   </div>
+   <div class="card card-body" style="width: 30rem;">
+    <p>その他の住所一覧</p>
+     <% @addresspage.each do |address| %>
+    <h5 class="card-title"><%= radio_button :ship, :shipping_address, address.id %>この住所に送る</h5>
+       <p class="card-text">
+       <p><b> <%= "氏名" %>  :</b>  <%= address.familyname %>  <%= address.firstname %></p>
+       <p><b><%= "カナ(氏名)" %>  :</b>  <%= address.kana_familyname %>  <%= address.kana_firstname %></p>
+       <p><b><%= "TEL" %>  :</b>  <%= address.telephone_number %> </p>
+       <p><b><%= "郵便番号" %>  :</b>  <%= address.postal_code %> </p>
+       <p><b><%= "住所" %>  :</b>  <%= address.address %> </p>
+       <% end %>
+      <%= paginate @addresspage, class: "paginate" %>
+   </div>
+ </div>
+
+    <div class="col-sm-6">
+        <table class="table table-bordered">
+          <tr>
+            <th class="table-active">支払い方法</th>
+            <td>
+              <label><%= f.radio_button :payment, :銀行振込, checked: "checked" %>  銀行振込</label>
+              <label><%= f.radio_button :payment, :クレジットカード %>  クレジットカード</label>
+              <label><%= f.radio_button :payment, :代金引換 %>  代金引換</label>
+
+            </td>
+          </tr>
+          <tr>
+            <th class="table-active">配送方法</th>
+            <td>まとめて配送</td>
+            <%= f.hidden_field :status, { value: :未発送 } %>
+          </tr>
+          <tr>
+          </tr>
+          <tr>
+            <th class="table-active">商品の小計</th>
+            <td>¥<%= @subtotal %></td>
+          </tr>
+          <tr>
+            <th class="table-active">配送料・手数料</th>
+            <td>¥<%= @postage %></td>
+            <%= f.hidden_field :postage, { value: 500 } %>
+          </tr>
+          <tr>
+            <th class="table-active">注文合計</th>
+            <td>¥<%= f.label :purchase_price, { value: @totalprice } %> </td>
+          </tr>
+        </table>
+        <div class="text-center">
+          <%= f.submit "注文を確定する", class: "btn btn-outline-primary btn-lg" %>
+    <% end %>
+    </div>
+  </div>
+</div>
+

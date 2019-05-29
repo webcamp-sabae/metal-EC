@@ -1,0 +1,70 @@
+<p></p>
+<div class="container">
+	<h1 class="col-sm-12">CD情報</h1>
+	<div class="text-right">
+		<%= link_to "編集", edit_admins_cd_path(@cd.id), :class => "btn btn-outline-danger btn-sm" %>
+	</div>
+	<div class="card border-dark">
+		<div class="card-body">
+			<div class="row">
+				<div class="col-sm-5 cd-img">
+					<%= attachment_image_tag @cd,:cd_image, format:"jpeg",
+					 class:"img-fluid", fallback:"no_image.jpg" %>
+				</div>
+				<div class="col-sm-7">
+					<table class="table table-bordered">
+						<tr>
+					    <th class="table-active">品番</th>
+					    <td><%= @cd.id %></td>
+					  </tr>
+					  <tr>
+					    <th class="table-active">シングル/アルバム名</th>
+					    <td><%= @cd.single_album_name %></td>
+					  </tr>
+					    <tr>
+					    <th class="table-active">アーティスト名</th>
+					    <td><%= @cd.artist.artist_name %></td>
+					  </tr>  <tr>
+					    <th class="table-active">ジャンル</th>
+					    <td><%= @cd.genre.genre %></td>
+					  </tr>
+					  <tr>
+					    <th class="table-active">レーベル</th>
+					    <td><%= @cd.label.label %></td>
+					  </tr>
+					  <tr>
+					    <th class="table-active">在庫</th>
+					    <td><%= @cd.stock %></td>
+					  </tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<h1 class="col-sm-12 mt-4">収録曲</h1>
+	<div class="card border-dark mb-5">
+		<div class="card-body">
+					<table class="table table-sprited">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>ディスクNo.</th>
+                  <th>曲名</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <% @songs.each do |song| %>
+                  <td></td>
+                  <td><%= song.disc_num %></td>
+                  <td><%= song.song_title %></td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

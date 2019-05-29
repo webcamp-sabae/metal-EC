@@ -1,27 +1,33 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'cds#index'
-
-  get '/thanks', to: 'thanks#thanks'
+  devise_for :admins, controllers: {
+    sessions:      'admins/sessions',
+  }
 
   devise_for :users
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+   root to: 'cds#index'
+  get '/thanks', to: 'thanks#thanks'
+
+  # devise_for :users
 
   resources :cds, only: [:index, :show]
+  resources :cd_names, only: [:index]
   resources :users, only: [:show, :edit, :update, :destroy]
   resources :carts, only: [:index, :create, :update, :destroy]
-  resources :recipts, only: [:new, :create]
+  resources :receipts, only: [:new, :create]
   resources :othersaddresses, only: [:new, :create, :update]
   resources :purchases, only: [:index]
 
 
+
   namespace :admins do
-  		root to: 'admin#index'
+  		root to: 'admins#index'
   		resources :purchases, only: [:index]
 		resources :receipts, only: [:update, :destroy]
-		resources :users, only: [:index,:show, :edit, :update]
-		resources :artists, only: [:create, :destroy, :update, :edit]
+		resources :users, only: [:index,:show, :edit, :update, :destroy]
+		resources :artists, only: [:new, :index, :create, :destroy, :update, :edit]
 		resources :cds do
-			resources :songs,only: [:create, :edit, :update, :destroy]
-		end
+		  resource :songs,only: [:create, :edit, :update, :destroy]
+    end
 	end
 end

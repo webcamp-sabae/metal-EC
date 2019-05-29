@@ -1,0 +1,65 @@
+<div class="container">
+  <% unless @carts.empty? %>
+    <div class ="row">
+      <h2  class="margin_top">ショッピングカート</h2>
+      <div class="col-lg-12">
+        <table class="table">
+          <thead>
+            <tr>
+              <th width="150" style="border:none">商品画像</th>
+              <th width="200" style="border:none">商品名</th>
+              <th width="200" style="border:none">アーティスト名</th>
+              <th style="border:none">価格(税込)</th>
+              <th style="border:none">購入数量</th>
+              <th style="border:none">小計</th>
+              <th style="border:none"></th>
+            </tr>
+          </thead>
+            <% @carts.each do |cart| %>
+          <tbody>
+            <tr>
+              <td><%= attachment_image_tag cart.cd, :cd_image, size: "60x60", fallback: "no_image.jpg" %></td>
+              <td><%= cart.cd.single_album_name %></td>
+              <td><%= cart.cd.artist.artist_name %></td>
+              <td><%= cart.cd.price %>円</td>
+              <td><%= form_with model: cart, url: cart_path(cart) do |f| %>
+                  <%= f.number_field :amount, min: 1, max: 99, step: 1 %>個
+                  <%= f.submit "変更" %></td>
+                  <% end %>
+              <td><%= cart.cd.price * cart.amount %>円</td>
+              <td><%= link_to "削除", cart_path(cart), class: "btn btn-outline-danger margin_top", method: :delete %></td>
+            </tr>
+          </tbody>
+              <% @total_price += cart.cd.price * cart.amount %>
+            <% end %>
+        </table>
+      </div>
+    </div>
+
+
+    <div class="clearfix">
+    <table style="table-layout:fixed;width:30%;" class="table table-bordered text-right float-right">
+      <colgroup>
+        <col style="width:40%;">
+        <col style="width:60%;">
+      </colgroup>
+      <tr>
+        <th class="table-active">送料</th>
+        <td><%= @postage %></td>
+      </tr>
+      <tr>
+        <th class="table-active">合計(税込)</th>
+        <td><%= @total_price + @postage %>円</td>
+      </tr>
+    </table>
+    </div>
+
+   <div class="text-right">
+    <%= link_to "買い物を続ける", cds_path, class: "btn btn-outline-dark" %>
+    <%= link_to "お支払いへ進む", new_receipt_path, class: "btn btn-primary" %>
+   </div>
+  <% else %>
+    <h1 class="text-center">商品がカートに入っていません。</h1>
+    <div class="text-center"><%= link_to "買い物をする", cds_path, class: "btn btn-outline-warning btn-lg mt-4" %></div>
+  <% end %>
+</div>

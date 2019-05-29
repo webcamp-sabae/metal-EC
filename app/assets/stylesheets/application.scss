@@ -1,0 +1,22 @@
+// Custom bootstrap variables must be set or imported *before* bootstrap.
+@import "bootstrap";
+
+.field_with_errors {
+  display: inline;
+  input {
+    @extend .is-invalid;
+  }
+}
+
+.cd-pege-search {
+	text-align: center;
+	margin-bottom: 100px;
+}
+
+.cart-mgn{
+  margin-bottom: 100px;
+}
+
+.new_cart{
+  display: inline-block
+}

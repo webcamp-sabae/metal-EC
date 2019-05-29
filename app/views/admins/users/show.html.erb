@@ -1,0 +1,161 @@
+<div class="col-md-10 offset-md-1 mt-5">
+  <h4 class="mb-3">会員詳細
+    <div class="float-right ml-4">
+      <%= link_to '削除', admins_user_path(@user), method: :delete,
+           data: { confirm: '本当に削除しますか?' }, class: "btn btn-outline-danger" %>
+    </div>
+    <div class="float-right">
+      <button type="button" name="button" id= "user-edit" class="btn btn-outline-success">編集</button>
+    </div>
+  </h4>
+
+  <%= form_with model: @user, url: admins_user_path(@user), class: 'needs-validation' do |f| %>
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <%= f.label :familyname, '姓' %>
+      <%= f.text_field :familyname, class: "form-control", readonly: true  %>
+      <div class="invalid-feedback">
+        Valid first name is required.
+      </div>
+    </div>
+
+    <div class="col-md-6 mb-3">
+      <%= f.label :firstname, '名' %>
+      <%= f.text_field :firstname, class: "form-control", readonly: true  %>
+      <div class="invalid-feedback">
+        Valid last name is required.
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <%= f.label :kana_familyname, 'セイ' %>
+      <%= f.text_field :kana_familyname, class: "form-control", readonly: true  %>
+      <div class="invalid-feedback">
+        Valid first name is required.
+      </div>
+    </div>
+
+    <div class="col-md-6 mb-3">
+      <%= f.label :kana_firstname, 'メイ' %>
+      <%= f.text_field :kana_firstname, class: "form-control", readonly: true  %>
+      <div class="invalid-feedback">
+        Valid last name is required.
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-5 mb-3">
+      <%= f.label :postal_code, '郵便番号' %>
+      <%= f.text_field :postal_code, class: "form-control", readonly: true  %>
+      <div class="invalid-feedback">
+        Please select a valid country.
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :address, '住所' %>
+    <%= f.text_field :address, class: "form-control", readonly: true  %>
+    <div class="invalid-feedback">
+      Please enter your shipping address.
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :telephone_number, '電話番号' %>
+    <%= f.telephone_field :telephone_number, class: "form-control", readonly: true  %>
+    <div class="invalid-feedback">
+      Please enter a valid email address for shipping updates.
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :email, 'メールアドレス' %>
+    <%= f.email_field :email, class: "form-control", readonly: true  %>
+    <div class="invalid-feedback">
+      Please enter a valid email address for shipping updates.
+    </div>
+  </div>
+
+  <div id="user-edit-button" class="text-center mt-5 d-none">
+    <button type="button" id="user-edit-cancel" class="btn btn-danger" style= "width: 120px;">キャンセル</button>
+    <%= f.submit '更新', class: "btn btn-success", style: "width: 120px;" %>
+  </div>
+  <% end %>
+</div>
+
+
+<hr class="mb-12 mt-5">
+
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 ">
+  <h1 class="h2">購入履歴一覧</h1>
+</div>
+
+<% @receipts.each do |receipt| %>
+  <div class="receipt mb-5">
+    <div class="table-responsive">
+      <table class="table table-striped table-sm user-table">
+        <thead>
+          <tr>
+            <th>注文日</th>
+            <th>支払方法</th>
+            <th>対応状況</th>
+            <th>届先氏名</th>
+            <th>届先住所</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= receipt.created_at %></td>
+            <td><%= receipt.payment %></td>
+            <td><%= receipt.status %></td>
+            <td><%= receipt.shipping_familyname %></td>
+            <td><%= receipt.shipping_address %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h6>購入商品</h6>
+    <div class="table-responsive">
+      <table class="table table-striped table-sm purchase-table">
+        <thead>
+          <tr>
+            <th>品番</th>
+            <th>ジャンル</th>
+            <th>アーティスト名</th>
+            <th>CD名</th>
+            <th>枚数</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% receipt.purchases.each do |purchase| %>
+            <tr>
+              <td><%= purchase.cd.id %></td>
+              <td><%= purchase.cd.genre.genre %></td>
+              <td><%= purchase.cd.artist.artist_name %></td>
+              <td><%= purchase.cd.single_album_name %></td>
+              <td><%= purchase.amount %>枚</td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  $('#user-edit').click(function() {
+          $('#user-edit-button').removeClass("d-none");
+          $('.form-control').attr('readonly',false);
+      });
+  $('#user-edit-cancel').click(function() {
+          $('#user-edit-button').addClass("d-none");
+          $('.form-control').attr('readonly',true);
+      });
+</script>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MetalEc</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'admins/custom', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= render 'admins/shared/header' %>
+    <div class="container-fluid">
+      <div class="row">
+        <%= render 'admins/shared/menu' %>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+              <%= flash[:notice] %>
+          <%= yield %>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

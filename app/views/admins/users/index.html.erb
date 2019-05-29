@@ -1,0 +1,34 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+  <h1 class="h2">会員登録一覧</h1>
+</div>
+
+<div class="users mb-5">
+  <div class="table-responsive">
+    <table class="table table-striped table-sm user-table">
+      <thead>
+        <tr>
+          <th>会員番号</th>
+          <th>氏名</th>
+          <th>電話番号</th>
+          <th>メールアドレス</th>
+          <th>住所</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.id %></td>
+            <td><%= user.familyname %></td>
+            <td><%= user.telephone_number %></td>
+            <td><%= user.email %></td>
+            <td><%= user.address %></td>
+            <td>
+              <%= link_to '詳細', admins_user_path(user),
+               class:"btn btn-outline-secondary"%>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>

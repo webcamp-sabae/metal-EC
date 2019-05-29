@@ -1,6 +1,10 @@
+
+
 require_relative 'boot'
 
 require 'rails/all'
+
+
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -15,5 +19,19 @@ module MetalEc
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+
+
+
+    config.generators do |g|
+      g.skip_routes true
+    end
+
+    # 表示時のタイムゾーンをJSTに設定
+    config.time_zone = 'Tokyo'
+    # DB保存時のタイムゾーンをJSTに設定
+    config.active_record.default_timezone = :local
+
   end
+
+
 end
