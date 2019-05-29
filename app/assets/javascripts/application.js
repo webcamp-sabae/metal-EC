@@ -14,8 +14,9 @@
 //= require jquery-ui
 //= require rails-ujs
 //= require activestorage
-//= require_tree .
 
 //= require bootstrap-sprockets
 //= require popper
 //= require cocoon
+
+//= require_tree .
