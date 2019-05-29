@@ -33,7 +33,7 @@ class Othersaddress < ApplicationRecord
   # 住所の仮想カラム
   attr_accessor :statu_address, :city_address, :street_address
 
-  validates :statu_address, :city_address, :street_address, presence: true
+  validates :statu_address, :city_address, presence: true
 
   #
   before_validation :set_address
