@@ -48,13 +48,15 @@ def create
       amount: cart.amount,
       purchase_price: cart.cd.price
     )
+
+     cart.cd.decrement!(:stock, cart.amount )
+
     end
 
   carts.destroy_all
 
   redirect_to thanks_path
 end
-
 
 
   private
